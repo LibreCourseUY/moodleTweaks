@@ -4,7 +4,8 @@
   "private": true,
   "description": "Manifest V3 browser extension for EVA FING",
   "scripts": {
-    "test": "node --test test/",
+    "pretest": "node scripts/check-tests.mjs",
+    "test": "node --test test/*.test.js",
     "build": "node scripts/build.mjs",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint .",
