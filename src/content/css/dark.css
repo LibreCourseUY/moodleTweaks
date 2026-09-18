@@ -1,0 +1,670 @@
+/*!
+ * MoodleTweaks — dark.css
+ * Modo oscuro para EVA FING (Moodle Boost).
+ * Sobreescribe la paleta de base.css y rescata componentes que
+ * Moodle deja en blanco. Se activa con html.moodle-tweaks-dark.
+ * Debe cargarse al final de la lista de CSS para ganar los empates
+ * de especificidad contra los modulos (html.moodle-tweaks-theme ...).
+ */
+
+html.moodle-tweaks-dark {
+  color-scheme: dark;
+
+  /* ---- Paleta oscura ------------------------------------------------------ */
+  --moodle-tweaks-brand: #5aa9dd;
+  --moodle-tweaks-brand-dark: #79bcec;
+  --moodle-tweaks-brand-darker: #a8d3f2;
+  --moodle-tweaks-brand-bg: #0d4d7c;
+  --moodle-tweaks-brand-bg-hover: #125c96; /* hover de controles con texto blanco */
+  --moodle-tweaks-brand-light: #3a5570;
+  --moodle-tweaks-brand-soft: #19232e;
+  --moodle-tweaks-brand-tint: #10161e;
+  --moodle-tweaks-accent: #42b7ea;
+  --moodle-tweaks-success: #3dbf84;
+  --moodle-tweaks-warning: #e0a53e;
+  --moodle-tweaks-danger: #e5675b;
+  --moodle-tweaks-page-bg: #090c10;
+  --moodle-tweaks-surface: #11161c;
+  --moodle-tweaks-surface-alt: #161d25;
+  --moodle-tweaks-border: #232d37;
+  --moodle-tweaks-border-strong: #32404d;
+  --moodle-tweaks-text: #e2e8f0;
+  --moodle-tweaks-text-muted: #9aa8b8;
+  --moodle-tweaks-text-faint: #8595a5;
+  --moodle-tweaks-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --moodle-tweaks-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --moodle-tweaks-shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
+  --moodle-tweaks-shadow-brand: 0 4px 14px rgba(90, 169, 221, 0.28);
+  --moodle-tweaks-focus-ring: 0 0 0 3px rgba(90, 169, 221, 0.4);
+}
+
+/* ---- Variantes de oscuro --------------------------------------------------
+ * Se aplican junto a html.moodle-tweaks-dark y sobreescriben la paleta. La doble clase
+ * tiene mayor especificidad que html.moodle-tweaks-dark, asi que gana el empate. */
+html.moodle-tweaks-dark.moodle-tweaks-dark-dim {
+  --moodle-tweaks-brand-bg: #0f4a70;
+  --moodle-tweaks-brand-bg-hover: #145d8c;
+  --moodle-tweaks-brand-soft: #1e2833;
+  --moodle-tweaks-brand-tint: #151b22;
+  --moodle-tweaks-page-bg: #171c22;
+  --moodle-tweaks-surface: #1f252c;
+  --moodle-tweaks-surface-alt: #262d36;
+  --moodle-tweaks-border: #333c46;
+  --moodle-tweaks-border-strong: #48535f;
+  --moodle-tweaks-text: #e7edf4;
+  --moodle-tweaks-text-muted: #aab7c5;
+  --moodle-tweaks-text-faint: #93a0ae;
+}
+
+/* AMOLED: negro puro para maximizar el contraste en pantallas OLED. */
+html.moodle-tweaks-dark.moodle-tweaks-dark-amoled {
+  --moodle-tweaks-brand-bg: #0a3557;
+  --moodle-tweaks-brand-bg-hover: #0e456f;
+  --moodle-tweaks-brand-soft: #0d1117;
+  --moodle-tweaks-brand-tint: #05070a;
+  --moodle-tweaks-page-bg: #000;
+  --moodle-tweaks-surface: #000;
+  --moodle-tweaks-surface-alt: #0b0b0d;
+  --moodle-tweaks-border: #1e1e22;
+  --moodle-tweaks-border-strong: #303036;
+  --moodle-tweaks-text: #ededf0;
+  --moodle-tweaks-text-muted: #9a9aa3;
+  --moodle-tweaks-text-faint: #7c7c85;
+}
+
+/* ---- Lienzo ------------------------------------------------------------- */
+html.moodle-tweaks-dark body {
+  background-color: var(--moodle-tweaks-page-bg);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark ::selection {
+  background: var(--moodle-tweaks-brand-light);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* ---- Tipografia y enlaces ----------------------------------------------- */
+html.moodle-tweaks-dark h1,
+html.moodle-tweaks-dark h2,
+html.moodle-tweaks-dark h3,
+html.moodle-tweaks-dark h4,
+html.moodle-tweaks-dark h5,
+html.moodle-tweaks-dark h6,
+html.moodle-tweaks-dark .h1,
+html.moodle-tweaks-dark .h2,
+html.moodle-tweaks-dark .h3,
+html.moodle-tweaks-dark .h4,
+html.moodle-tweaks-dark .h5,
+html.moodle-tweaks-dark .h6 {
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .text-muted,
+html.moodle-tweaks-dark .dimmed_text,
+html.moodle-tweaks-dark .text-muted > * {
+  color: var(--moodle-tweaks-text-muted) !important;
+}
+
+/* ---- Formularios (la base deja el fondo en blanco) ---------------------- */
+html.moodle-tweaks-dark .form-control,
+html.moodle-tweaks-dark .custom-select,
+html.moodle-tweaks-dark .custom-select select,
+html.moodle-tweaks-dark select.form-control,
+html.moodle-tweaks-dark select,
+html.moodle-tweaks-dark input[type="text"],
+html.moodle-tweaks-dark input[type="search"],
+html.moodle-tweaks-dark input[type="email"],
+html.moodle-tweaks-dark input[type="password"],
+html.moodle-tweaks-dark input[type="url"],
+html.moodle-tweaks-dark input[type="number"],
+html.moodle-tweaks-dark textarea {
+  background-color: var(--moodle-tweaks-surface);
+  color: var(--moodle-tweaks-text);
+  border-color: var(--moodle-tweaks-border-strong);
+}
+
+/* ---- Superficies genericas dejadas en blanco por Moodle ----------------- */
+html.moodle-tweaks-dark .bg-white {
+  background-color: var(--moodle-tweaks-surface) !important;
+}
+
+html.moodle-tweaks-dark .bg-light {
+  background-color: var(--moodle-tweaks-surface-alt) !important;
+}
+
+html.moodle-tweaks-dark .text-dark {
+  color: var(--moodle-tweaks-text) !important;
+}
+
+html.moodle-tweaks-dark .card,
+html.moodle-tweaks-dark .block.card,
+html.moodle-tweaks-dark .dropdown-menu,
+html.moodle-tweaks-dark .popover,
+html.moodle-tweaks-dark .modal-content,
+html.moodle-tweaks-dark .comment-area {
+  background-color: var(--moodle-tweaks-surface);
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .dropdown-divider,
+html.moodle-tweaks-dark .modal-content .modal-header,
+html.moodle-tweaks-dark .modal-content .modal-footer {
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .dropdown-menu {
+  box-shadow: var(--moodle-tweaks-shadow-md);
+}
+
+/* El filtro de codigo del tema pinta `pre[class*="language-"]` de #f5f2f0 y,
+   como el CSS de la extension se inyecta antes de las hojas del sitio, gana
+   el empate de especificidad. Por eso el selector de bloques de codigo sube
+   de especificidad y fuerza el fondo. */
+html.moodle-tweaks-dark pre,
+html.moodle-tweaks-dark code,
+html.moodle-tweaks-dark pre[class*="language-"] {
+  background-color: #000 !important;
+  border-color: var(--moodle-tweaks-border);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .well,
+html.moodle-tweaks-dark .generalbox {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-color: var(--moodle-tweaks-border);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .card .card-header,
+html.moodle-tweaks-dark .card .card-footer,
+html.moodle-tweaks-dark table.table thead th,
+html.moodle-tweaks-dark .generaltable thead th {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-color: var(--moodle-tweaks-border);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .generaltable tbody tr:hover,
+html.moodle-tweaks-dark table.table tbody tr:hover {
+  background-color: var(--moodle-tweaks-brand-tint);
+}
+
+/* ---- Areas principales de la pagina -------------------------------------- */
+html.moodle-tweaks-dark #region-main,
+html.moodle-tweaks-dark #page.drawers .main-inner {
+  background-color: var(--moodle-tweaks-surface) !important;
+}
+
+/* ---- Navbar superior (fondo mas oscuro para mantener el texto blanco) ---- */
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top {
+  background-color: var(--moodle-tweaks-brand-bg) !important;
+}
+
+html.moodle-tweaks-dark.moodle-tweaks-navigation #courseindex .courseindex-item.pageitem,
+html.moodle-tweaks-dark.moodle-tweaks-navigation #courseindex .courseindex-item.pageitem:hover,
+html.moodle-tweaks-dark.moodle-tweaks-navigation #courseindex .courseindex-item.pageitem:focus {
+  background-color: var(--moodle-tweaks-brand-bg);
+}
+
+/* ---- Listas de navegacion ------------------------------------------------- */
+html.moodle-tweaks-dark .list-group-item {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text);
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .list-group-item:hover,
+html.moodle-tweaks-dark .list-group-item:focus {
+  background-color: var(--moodle-tweaks-surface);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .list-group-item.active,
+html.moodle-tweaks-dark .drawer .list-group-item.active {
+  background-color: var(--moodle-tweaks-brand-bg);
+  border-color: var(--moodle-tweaks-brand-bg);
+  color: #fff;
+}
+
+/* ---- Pestanas de navegacion secundaria ------------------------------------ */
+html.moodle-tweaks-dark .moremenu .nav-tabs {
+  background-color: var(--moodle-tweaks-surface);
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .moremenu .nav-tabs .nav-link.active {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-color: var(--moodle-tweaks-border);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .moremenu .nav-link:hover,
+html.moodle-tweaks-dark .moremenu .nav-link:focus {
+  background-color: var(--moodle-tweaks-brand-soft);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* El tema pinta la barra y las pestanas en blanco (.secondary-navigation
+ * .navigation y .nav-tabs:not(.more-nav) .nav-link). */
+html.moodle-tweaks-dark .secondary-navigation .navigation {
+  background-color: var(--moodle-tweaks-surface);
+  border-bottom-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .nav-tabs:not(.more-nav) .nav-link,
+html.moodle-tweaks-dark .nav-pills .nav-link {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text-muted);
+}
+
+html.moodle-tweaks-dark .nav-tabs:not(.more-nav) .nav-link:hover,
+html.moodle-tweaks-dark .nav-tabs:not(.more-nav) .nav-link:focus,
+html.moodle-tweaks-dark .nav-pills .nav-link:hover,
+html.moodle-tweaks-dark .nav-pills .nav-link:focus {
+  background-color: var(--moodle-tweaks-brand-soft);
+  border-color: var(--moodle-tweaks-border);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .nav-tabs:not(.more-nav) .nav-link.active,
+html.moodle-tweaks-dark .nav-pills .nav-link.active {
+  background-color: var(--moodle-tweaks-brand-bg);
+  border-color: var(--moodle-tweaks-brand-bg);
+  color: #fff;
+}
+
+/* ---- Dropdowns y menus ----------------------------------------------------- */
+html.moodle-tweaks-dark .dropdown-item {
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .dropdown-item:hover,
+html.moodle-tweaks-dark .dropdown-item:focus {
+  background-color: var(--moodle-tweaks-brand-soft);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+html.moodle-tweaks-dark .dropdown-item.active,
+html.moodle-tweaks-dark .dropdown-item:active {
+  background-color: var(--moodle-tweaks-brand-bg);
+  color: #fff;
+}
+
+html.moodle-tweaks-dark .menu-action-text {
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .initialbarlabel {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* ---- Paginacion ------------------------------------------------------------- */
+html.moodle-tweaks-dark .page-link {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .page-item.active .page-link {
+  background-color: var(--moodle-tweaks-brand-bg);
+  border-color: var(--moodle-tweaks-brand-bg);
+  color: #fff;
+}
+
+/* ---- Estados de foco y activos --------------------------------------------
+ * Al recibir foco o quedar activos, Bootstrap/FING pintan varios controles en
+ * blanco (enlaces sin clase, inputs, botones de icono, indice del curso...).
+ * Sobre el fondo oscuro eso genera un flash claro con texto ilegible; los
+ * llevamos a las superficies oscuras (manteniendo el acento de marca). */
+html.moodle-tweaks-dark a:not([class]):focus,
+html.moodle-tweaks-dark a:not([class]).focus,
+html.moodle-tweaks-dark .aalink:focus,
+html.moodle-tweaks-dark .aalink.focus,
+html.moodle-tweaks-dark a.autolink:focus,
+html.moodle-tweaks-dark a.focus.autolink,
+html.moodle-tweaks-dark .arrow_link:focus,
+html.moodle-tweaks-dark .arrow_link.focus,
+html.moodle-tweaks-dark .activityinstance > a:focus,
+html.moodle-tweaks-dark .activityinstance > a.focus,
+html.moodle-tweaks-dark #page-footer a:not([class]):focus,
+html.moodle-tweaks-dark #page-footer a:not([class]).focus {
+  background-color: transparent;
+  color: var(--moodle-tweaks-brand-darker);
+  box-shadow: none;
+}
+
+html.moodle-tweaks-dark .form-control:focus,
+html.moodle-tweaks-dark .custom-select:focus,
+html.moodle-tweaks-dark select:focus,
+html.moodle-tweaks-dark input:focus,
+html.moodle-tweaks-dark textarea:focus {
+  background-color: var(--moodle-tweaks-surface);
+  color: var(--moodle-tweaks-text);
+  border-color: var(--moodle-tweaks-brand);
+}
+
+html.moodle-tweaks-dark .courseindex .courseindex-item.active {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .btn.btn-icon:hover,
+html.moodle-tweaks-dark .btn.btn-icon:focus {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .show > .btn-secondary.dropdown-toggle,
+html.moodle-tweaks-dark .show > .btn-light.dropdown-toggle,
+html.moodle-tweaks-dark .show > .btn-outline-light.dropdown-toggle {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-color: var(--moodle-tweaks-border-strong);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark [contenteditable="true"]:focus {
+  background-color: var(--moodle-tweaks-surface);
+  color: var(--moodle-tweaks-text);
+}
+
+/* ---- Controles primarios y badges ------------------------------------------ */
+html.moodle-tweaks-dark .btn-primary,
+html.moodle-tweaks-dark .badge-primary,
+html.moodle-tweaks-dark .badge.bg-primary,
+html.moodle-tweaks-dark .bg-primary,
+html.moodle-tweaks-dark.moodle-tweaks-activities .activity-item .badge.bg-primary,
+html.moodle-tweaks-dark.moodle-tweaks-forum .discussion-list .unread .badge {
+  background-color: var(--moodle-tweaks-brand-bg) !important;
+  border-color: var(--moodle-tweaks-brand-bg) !important;
+  color: #fff;
+}
+
+html.moodle-tweaks-dark .btn-primary:hover,
+html.moodle-tweaks-dark .btn-primary:focus,
+html.moodle-tweaks-dark .btn-primary:active {
+  background-color: var(--moodle-tweaks-brand-bg-hover) !important;
+  border-color: var(--moodle-tweaks-brand-bg-hover) !important;
+  color: #fff;
+}
+
+/* ---- Bordes ----------------------------------------------------------------
+ * El tema usa grises claros (#dee2e6, #ced4da, #e9ecef) en cajas, tablas y
+ * controles. En oscuro pasamos todo borde al color oscuro. Los pseudo-
+ * elementos (flechas de desplegables, tooltips) no se ven afectados y dejamos
+ * sin borde los elementos cuyo borde era transparente a proposito. */
+html.moodle-tweaks-dark *:where(:not(.btn):not(.nav-link):not(.navbar-toggler):not(.page-link):not(.list-group-item):not(.courseindex-item):not(.courseindex-section):not(.form-control-plaintext):not(.noborder):not(.spinner-border):not(.form-control):not(.custom-select):not(select):not(input):not(textarea):not(.message-app .message .tail):not(.carousel-indicators li):not(.calendar-controls .next):not(.calendar-controls .previous)) {
+  border-color: var(--moodle-tweaks-border) !important;
+}
+
+/* ---- Componentes de los modulos con colores fijos ----------------------- */
+
+/* Disponibilidad de seccion (course.css) */
+html.moodle-tweaks-dark .section_availability {
+  display: none;
+}
+
+/* Aviso de disponibilidad de actividad: el tema usa #e9ecef */
+html.moodle-tweaks-dark .course-section .availabilityinfo,
+html.moodle-tweaks-dark .availabilityinfo {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text-muted);
+}
+
+/* Alertas de Bootstrap (fondos pastel con texto oscuro) */
+html.moodle-tweaks-dark .alert-primary {
+  background-color: #0f2740;
+  border-color: #1d466b;
+  color: #a9d3f5;
+}
+
+html.moodle-tweaks-dark .alert-secondary {
+  background-color: #1b2027;
+  border-color: #2c353f;
+  color: #c3ccd6;
+}
+
+html.moodle-tweaks-dark .alert-success {
+  background-color: #102a1e;
+  border-color: #1d4a34;
+  color: #9fdcb9;
+}
+
+html.moodle-tweaks-dark .alert-danger {
+  background-color: #2c1517;
+  border-color: #57282c;
+  color: #f0a9a2;
+}
+
+html.moodle-tweaks-dark .alert-warning {
+  background-color: #2e2510;
+  border-color: #57461f;
+  color: #e9cc86;
+}
+
+html.moodle-tweaks-dark .alert-info {
+  background-color: #0f282c;
+  border-color: #1d494f;
+  color: #9fd6dd;
+}
+
+html.moodle-tweaks-dark .alert-light,
+html.moodle-tweaks-dark .alert-dark {
+  background-color: #1b2027;
+  border-color: #2c353f;
+  color: #c3ccd6;
+}
+
+html.moodle-tweaks-dark .alert a,
+html.moodle-tweaks-dark .alert .alert-link {
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* Resaltados de busqueda (highlight.css) */
+html.moodle-tweaks-dark mark,
+html.moodle-tweaks-dark .highlight,
+html.moodle-tweaks-dark .searchresult mark {
+  background: #3d320f;
+  color: #f5e3a4;
+}
+
+/* Fin de semana del calendario (calendar.css) */
+html.moodle-tweaks-dark table.calendarmonth td.weekend {
+  background: var(--moodle-tweaks-surface-alt);
+}
+
+/* Cabecera de actividad (foro, tareas, etc.) */
+html.moodle-tweaks-dark .path-mod .activity-header:not(:empty),
+html.moodle-tweaks-dark .activity-header {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text);
+}
+
+/* Fechas de actividad: el tema las deja en gris oscuro (#495057) */
+html.moodle-tweaks-dark .activity-dates,
+html.moodle-tweaks-dark .activity-item .activity-dates {
+  color: var(--moodle-tweaks-text-muted);
+}
+
+/* Botones y menus con el gris #6c757d de Bootstrap */
+html.moodle-tweaks-dark .btn-outline-secondary {
+  color: var(--moodle-tweaks-text-muted);
+  border-color: var(--moodle-tweaks-border-strong);
+}
+
+html.moodle-tweaks-dark .select-menu .btn.dropdown-toggle,
+html.moodle-tweaks-dark .select-menu ul[role="group"] li:first-child {
+  color: var(--moodle-tweaks-text-muted);
+}
+
+/* ---- Tablas ---------------------------------------------------------------
+ * El tema pinta las celdas con .table td en blanco y las filas impares con
+ * un gris translucido. En oscuro repintamos filas y celdas. */
+html.moodle-tweaks-dark .table td,
+html.moodle-tweaks-dark .table th,
+html.moodle-tweaks-dark .generaltable td,
+html.moodle-tweaks-dark .generaltable th,
+html.moodle-tweaks-dark .flexible .cell {
+  background-color: transparent !important;
+  color: var(--moodle-tweaks-text) !important;
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-dark .generaltable tbody tr:nth-of-type(odd),
+html.moodle-tweaks-dark .table-striped tbody tr:nth-of-type(odd),
+html.moodle-tweaks-dark .flexible tbody tr:nth-of-type(odd) {
+  background-color: var(--moodle-tweaks-surface-alt);
+}
+
+html.moodle-tweaks-dark .generaltable tbody tr:nth-of-type(even),
+html.moodle-tweaks-dark .table-striped tbody tr:nth-of-type(even),
+html.moodle-tweaks-dark .flexible tbody tr:nth-of-type(even) {
+  background-color: var(--moodle-tweaks-surface);
+}
+
+html.moodle-tweaks-dark .generaltable thead th,
+html.moodle-tweaks-dark .flexible thead th {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* Contenedor del informe de calificaciones: el tema lo pinta #f8f9fa */
+html.moodle-tweaks-dark .path-grade-report-user .user-report-container {
+  background-color: var(--moodle-tweaks-surface);
+}
+
+/* ---- Botón "Mensaje" del perfil y similares ------------------------------ */
+html.moodle-tweaks-dark .header-button-title,
+html.moodle-tweaks-dark .header-button-group .btn {
+  color: var(--moodle-tweaks-text);
+}
+
+/* ---- Pestañas activas sobre fondo de marca ------------------------------- */
+html.moodle-tweaks-dark #region-main .page-item.active .page-link,
+html.moodle-tweaks-dark #region-main .dropdown-item.active,
+html.moodle-tweaks-dark .format_onetopic-tabs .nav-link.active {
+  color: #fff !important;
+}
+
+html.moodle-tweaks-dark .format_onetopic-tabs .nav-link.active {
+  background-color: var(--moodle-tweaks-brand-bg);
+  border-color: var(--moodle-tweaks-brand-bg);
+}
+
+/* ---- Formato onetopic ------------------------------------------------------
+ * El tema pinta el cuerpo de las pestanas y las secciones con blanco
+ * translucido (#fffb); sobre el fondo oscuro eso las dejaria claras. */
+html.moodle-tweaks-dark .format-onetopic #page.drawers .onetopic-withsectionbg div[role="main"],
+html.moodle-tweaks-dark .format-onetopic .onetopic-withsectionbg .course-section,
+html.moodle-tweaks-dark .format-onetopic .onetopic-withsubsectionbg .course-section {
+  background-color: var(--moodle-tweaks-surface-alt) !important;
+}
+
+/* ---- Fondos claros incrustados (contenido de autor) ----------------------
+ * Los docentes pintan cajas con style="background-color:#fff...". En oscuro
+ * las repintamos a una superficie oscura (dejando intactos los bordes de
+ * acento) y forzamos texto claro: sus colores de texto inline (grises y
+ * azules oscuros) no se leen sobre un fondo oscuro. */
+html.moodle-tweaks-dark #region-main [style*="background-color"],
+html.moodle-tweaks-dark #region-main [style*="background:"] {
+  background-color: var(--moodle-tweaks-surface-alt) !important;
+}
+
+/* Banners de autor con degradado o foto inline (background: linear-gradient,
+ * background-image: url(...)): el background-color no tapa la imagen, hay que
+ * quitar tambien la imagen de fondo. */
+html.moodle-tweaks-dark #region-main [style*="gradient"],
+html.moodle-tweaks-dark #region-main [style*="url("] {
+  background-image: none !important;
+}
+
+html.moodle-tweaks-dark #region-main [style*=" color:"],
+html.moodle-tweaks-dark #region-main [style^="color:"] {
+  color: var(--moodle-tweaks-text) !important;
+}
+
+html.moodle-tweaks-dark #region-main [style*="background-color"] a:not(.nav-link):not(.dropdown-item):not(.btn),
+html.moodle-tweaks-dark #region-main [style*="background:"] a:not(.nav-link):not(.dropdown-item):not(.btn),
+html.moodle-tweaks-dark #region-main a[style*=" color:"]:not(.nav-link):not(.dropdown-item):not(.btn),
+html.moodle-tweaks-dark #region-main a[style^="color:"]:not(.nav-link):not(.dropdown-item):not(.btn) {
+  color: var(--moodle-tweaks-brand) !important;
+}
+
+html.moodle-tweaks-dark #region-main [style*="background-color"] a:not(.nav-link):not(.dropdown-item):not(.btn):hover,
+html.moodle-tweaks-dark #region-main [style*="background:"] a:not(.nav-link):not(.dropdown-item):not(.btn):hover,
+html.moodle-tweaks-dark #region-main a[style*=" color:"]:not(.nav-link):not(.dropdown-item):not(.btn):hover,
+html.moodle-tweaks-dark #region-main a[style^="color:"]:not(.nav-link):not(.dropdown-item):not(.btn):hover {
+  color: var(--moodle-tweaks-brand-darker) !important;
+}
+
+/* ---- Desplegables de la barra y paneles internos --------------------------
+ * El tema deja estos paneles en blanco (#fff / #eff1f3) aunque cuelguen de la
+ * barra; en oscuro hay que repintarlos o los iconos claros desaparecen. */
+html.moodle-tweaks-dark .popover-region-container,
+html.moodle-tweaks-dark .popover-region-header-container,
+html.moodle-tweaks-dark .popover-region-footer-container,
+html.moodle-tweaks-dark .message-app {
+  background-color: var(--moodle-tweaks-surface);
+}
+
+/* Botones de cajones y togglers: el tema los deja con texto oscuro */
+html.moodle-tweaks-dark .drawer .btn,
+html.moodle-tweaks-dark .drawertoggle,
+html.moodle-tweaks-dark .btn-icon {
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .drawer-toggles .drawer-toggler .btn {
+  background-color: var(--moodle-tweaks-surface-alt);
+}
+
+/* Iconos de contraer/expandir del informe de calificaciones (color fijo) */
+html.moodle-tweaks-dark .path-grade-report-user .user-grade th.category a.toggle-category i {
+  color: var(--moodle-tweaks-text);
+}
+
+/* Buscador del tema: el boton queda en gris claro (#f8f9fa) y, al abrirlo,
+ * el panel es una barra blanca a pantalla completa. */
+html.moodle-tweaks-dark .simplesearchform .btn-submit,
+html.moodle-tweaks-dark .simplesearchform input {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark .simplesearchform input {
+  border-color: var(--moodle-tweaks-border-strong);
+}
+
+html.moodle-tweaks-dark .simplesearchform input::placeholder {
+  color: var(--moodle-tweaks-text-muted);
+}
+
+html.moodle-tweaks-dark .simplesearchform .collapse.show,
+html.moodle-tweaks-dark .simplesearchform .collapsing {
+  background-color: var(--moodle-tweaks-surface);
+}
+
+/* En la barra superior el buscador hereda los estilos translucidos de
+ * navigation.css; en oscuro lo pasamos a una superficie oscura. */
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top .searchform-navbar input,
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top #searchform-navbar input {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border: 1px solid var(--moodle-tweaks-border-strong);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top .searchform-navbar input::placeholder {
+  color: var(--moodle-tweaks-text-muted);
+}
+
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top .simplesearchform .btn-submit {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border: 1px solid var(--moodle-tweaks-border-strong);
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top .simplesearchform .btn-submit:hover,
+html.moodle-tweaks-dark.moodle-tweaks-navigation .navbar.fixed-top .simplesearchform .btn-submit:focus {
+  background-color: var(--moodle-tweaks-surface);
+  color: #fff;
+}

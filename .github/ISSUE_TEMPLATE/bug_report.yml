@@ -1,0 +1,88 @@
+name: Bug report
+description: Reportá un comportamiento inesperado de MoodleTweaks.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar. Cuanto más contexto, más rápido se encuentra la causa.
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navegador
+      options:
+        - Chrome
+        - Firefox
+        - Edge
+        - Brave
+        - Otro / extensión con soporte para Chromium
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión de MoodleTweaks
+      description: La encontrás en el pie del popup o en la página de bienvenida.
+      placeholder: "p. ej. 1.1.0"
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Página / curso afectado
+      description: URL o sección de EVA FING donde se reproduce.
+      placeholder: "p. ej. https://eva.fing.edu.uy/course/view.php?id=420 (Tema X)"
+    validations:
+      required: true
+  - type: checkboxes
+    id: config
+    attributes:
+      label: Configuración relevante
+      description: Marcá el/los módulo(s) que están activos en el popup.
+      options:
+        - label: Modo oscuro
+        - label: Modo oscuro automático
+        - label: Variante dim/AMOLED
+        - label: Escala de fuente / densidad
+        - label: Navegación
+        - label: Actividades / curso
+        - label: Foros
+        - label: Calendario / próximas entregas
+        - label: Panel limpio
+        - label: Highlight / back-to-top / badge
+        - label: CSS personalizado
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: |
+        1. Abrir ...
+        2. Clic en ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento esperado
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamiento actual
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Consola / screenshots
+      description: Pegá errores de consola (si hay) o adjuntá capturas. Si es un problema visual, una captura sirve mucho.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Chequeo
+      options:
+        - label: Probé con la extensión desactivada (interruptor maestro off) y el problema no aparece
+          required: true

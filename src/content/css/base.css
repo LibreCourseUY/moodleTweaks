@@ -1,0 +1,403 @@
+/*!
+ * MoodleTweaks — base.css
+ * Tema consistente para EVA FING (Moodle Boost).
+ * Define una paleta unica, tipografia, superficies y componentes
+ * coherentes en todas las paginas. Se activa con html.moodle-tweaks-theme.
+ */
+
+/* ---- Escala tipografica global ------------------------------------------
+ * El content script escribe --moodle-tweaks-font-scale en <html> (1 = 100 %). El valor
+ * por defecto de 1 deja la pagina exactamente como estaba. */
+:root {
+  font-size: calc(100% * var(--moodle-tweaks-font-scale, 1));
+}
+
+html.moodle-tweaks-theme {
+  /* ---- Design tokens ---------------------------------------------------- */
+  --moodle-tweaks-brand: #004987;
+  --moodle-tweaks-brand-dark: #003660;
+  --moodle-tweaks-brand-darker: #002a4d;
+  --moodle-tweaks-brand-light: #cfe0ee;
+  --moodle-tweaks-brand-soft: #eef4f9;
+  --moodle-tweaks-brand-tint: #f5f9fc;
+  --moodle-tweaks-accent: #0f8ac1;
+  --moodle-tweaks-success: #1a8a5a;
+  --moodle-tweaks-warning: #b7791f;
+  --moodle-tweaks-danger: #c0392b;
+  --moodle-tweaks-page-bg: #f1f4f7;
+  --moodle-tweaks-surface: #fff;
+  --moodle-tweaks-surface-alt: #f8fafc;
+  --moodle-tweaks-border: #dce2e9;
+  --moodle-tweaks-border-strong: #c3ccd6;
+  --moodle-tweaks-text: #1f2933;
+  --moodle-tweaks-text-muted: #5b6b7b;
+  --moodle-tweaks-text-faint: #8595a5;
+  --moodle-tweaks-radius-lg: 14px;
+  --moodle-tweaks-radius: 10px;
+  --moodle-tweaks-radius-sm: 7px;
+  --moodle-tweaks-shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --moodle-tweaks-shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --moodle-tweaks-shadow-md: 0 6px 16px rgba(16, 24, 40, 0.1);
+  --moodle-tweaks-shadow-brand: 0 4px 14px rgba(0, 73, 135, 0.22);
+  --moodle-tweaks-focus-ring: 0 0 0 3px rgba(0, 73, 135, 0.32);
+  --moodle-tweaks-font: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+    "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif;
+
+  /* Alinea los tokens de Bootstrap con la marca FING */
+  --primary: var(--moodle-tweaks-brand);
+  --blue: var(--moodle-tweaks-brand);
+
+  font-family: var(--moodle-tweaks-font);
+}
+
+/* ---- Lienzo ------------------------------------------------------------- */
+html.moodle-tweaks-theme body {
+  background-color: var(--moodle-tweaks-page-bg);
+  color: var(--moodle-tweaks-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+html.moodle-tweaks-theme #page,
+html.moodle-tweaks-theme #page-content,
+html.moodle-tweaks-theme #region-main-box,
+html.moodle-tweaks-theme #region-main {
+  background: transparent;
+}
+
+html.moodle-tweaks-theme ::selection {
+  background: var(--moodle-tweaks-brand-light);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* Scrollbars discretas y consistentes */
+html.moodle-tweaks-theme * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--moodle-tweaks-border-strong) transparent;
+}
+
+html.moodle-tweaks-theme *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html.moodle-tweaks-theme *::-webkit-scrollbar-thumb {
+  background: var(--moodle-tweaks-border-strong);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+html.moodle-tweaks-theme *::-webkit-scrollbar-thumb:hover {
+  background: var(--moodle-tweaks-text-faint);
+  background-clip: content-box;
+}
+
+/* ---- Tipografia --------------------------------------------------------- */
+html.moodle-tweaks-theme h1,
+html.moodle-tweaks-theme h2,
+html.moodle-tweaks-theme h3,
+html.moodle-tweaks-theme h4,
+html.moodle-tweaks-theme h5,
+html.moodle-tweaks-theme h6,
+html.moodle-tweaks-theme .h1,
+html.moodle-tweaks-theme .h2,
+html.moodle-tweaks-theme .h3,
+html.moodle-tweaks-theme .h4,
+html.moodle-tweaks-theme .h5,
+html.moodle-tweaks-theme .h6 {
+  color: var(--moodle-tweaks-brand-darker);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+html.moodle-tweaks-theme .text-muted,
+html.moodle-tweaks-theme .dimmed_text,
+html.moodle-tweaks-theme .text-muted > * {
+  color: var(--moodle-tweaks-text-muted) !important;
+}
+
+/* ---- Enlaces ------------------------------------------------------------ */
+html.moodle-tweaks-theme #region-main a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link),
+html.moodle-tweaks-theme .course-content a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link),
+html.moodle-tweaks-theme .drawercontent a:not(.btn):not(.list-group-item) {
+  color: var(--moodle-tweaks-brand);
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+
+html.moodle-tweaks-theme #region-main a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):hover,
+html.moodle-tweaks-theme .course-content a:not(.btn):not(.nav-link):not(.dropdown-item):not(.page-link):hover,
+html.moodle-tweaks-theme .drawercontent a:not(.btn):not(.list-group-item):hover {
+  color: var(--moodle-tweaks-brand-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---- Enlaces del pie y del popover de usuario --------------------------- */
+html.moodle-tweaks-theme #page-footer a,
+html.moodle-tweaks-theme .footer-popover a,
+html.moodle-tweaks-theme .footer-section a,
+html.moodle-tweaks-theme .footer-support-link a,
+html.moodle-tweaks-theme .logininfo a,
+html.moodle-tweaks-theme .mobilelink {
+  color: var(--moodle-tweaks-brand);
+  text-decoration: none;
+}
+
+html.moodle-tweaks-theme #page-footer a:hover,
+html.moodle-tweaks-theme .footer-popover a:hover,
+html.moodle-tweaks-theme .footer-section a:hover,
+html.moodle-tweaks-theme .footer-support-link a:hover,
+html.moodle-tweaks-theme .logininfo a:hover,
+html.moodle-tweaks-theme .mobilelink:hover {
+  color: var(--moodle-tweaks-brand-dark);
+  text-decoration: underline;
+}
+
+/* ---- Botones ------------------------------------------------------------ */
+html.moodle-tweaks-theme .btn {
+  border-radius: var(--moodle-tweaks-radius-sm);
+  font-weight: 550;
+  transition: background-color 0.12s ease, border-color 0.12s ease,
+    box-shadow 0.12s ease, transform 0.06s ease;
+}
+
+html.moodle-tweaks-theme .btn:focus-visible,
+html.moodle-tweaks-theme a:focus-visible,
+html.moodle-tweaks-theme button:focus-visible,
+html.moodle-tweaks-theme input:focus-visible,
+html.moodle-tweaks-theme select:focus-visible,
+html.moodle-tweaks-theme textarea:focus-visible,
+html.moodle-tweaks-theme [tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--moodle-tweaks-focus-ring);
+  border-radius: var(--moodle-tweaks-radius-sm);
+}
+
+html.moodle-tweaks-theme .btn-primary {
+  background-color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+  color: #fff;
+}
+
+html.moodle-tweaks-theme .btn-primary:hover,
+html.moodle-tweaks-theme .btn-primary:focus {
+  background-color: var(--moodle-tweaks-brand-dark);
+  border-color: var(--moodle-tweaks-brand-dark);
+}
+
+html.moodle-tweaks-theme .btn-primary:active {
+  background-color: var(--moodle-tweaks-brand-darker) !important;
+  border-color: var(--moodle-tweaks-brand-darker) !important;
+}
+
+html.moodle-tweaks-theme .btn-outline-primary {
+  color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+}
+
+html.moodle-tweaks-theme .btn-outline-primary:hover,
+html.moodle-tweaks-theme .btn-outline-primary:focus {
+  background-color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+  color: #fff;
+}
+
+html.moodle-tweaks-theme .btn-secondary {
+  background-color: #64748b;
+  border-color: #64748b;
+}
+
+html.moodle-tweaks-theme .btn-secondary:hover,
+html.moodle-tweaks-theme .btn-secondary:focus {
+  background-color: #52607a;
+  border-color: #52607a;
+}
+
+html.moodle-tweaks-theme .btn-link {
+  color: var(--moodle-tweaks-brand);
+}
+
+html.moodle-tweaks-theme .btn-link:hover {
+  color: var(--moodle-tweaks-brand-dark);
+}
+
+html.moodle-tweaks-theme .text-primary {
+  color: var(--moodle-tweaks-brand) !important;
+}
+
+html.moodle-tweaks-theme .bg-primary {
+  background-color: var(--moodle-tweaks-brand) !important;
+}
+
+html.moodle-tweaks-theme .border-primary {
+  border-color: var(--moodle-tweaks-brand) !important;
+}
+
+html.moodle-tweaks-theme .badge.bg-primary,
+html.moodle-tweaks-theme .badge-primary {
+  background-color: var(--moodle-tweaks-brand) !important;
+  color: #fff;
+}
+
+/* ---- Tarjetas / superficies -------------------------------------------- */
+html.moodle-tweaks-theme .card {
+  border: 1px solid var(--moodle-tweaks-border);
+  border-radius: var(--moodle-tweaks-radius);
+  background-color: var(--moodle-tweaks-surface);
+  box-shadow: var(--moodle-tweaks-shadow-sm);
+}
+
+html.moodle-tweaks-theme .card .card-header {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-bottom: 1px solid var(--moodle-tweaks-border);
+  font-weight: 600;
+}
+
+html.moodle-tweaks-theme .card .card-footer {
+  background-color: var(--moodle-tweaks-surface-alt);
+  border-top: 1px solid var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-theme .well,
+html.moodle-tweaks-theme .generalbox {
+  background-color: var(--moodle-tweaks-surface);
+  border: 1px solid var(--moodle-tweaks-border);
+  border-radius: var(--moodle-tweaks-radius);
+}
+
+/* ---- Formularios -------------------------------------------------------- */
+html.moodle-tweaks-theme .form-control,
+html.moodle-tweaks-theme .custom-select,
+html.moodle-tweaks-theme .custom-select select,
+html.moodle-tweaks-theme select.form-control,
+html.moodle-tweaks-theme input[type="text"],
+html.moodle-tweaks-theme input[type="search"],
+html.moodle-tweaks-theme input[type="email"],
+html.moodle-tweaks-theme input[type="password"],
+html.moodle-tweaks-theme textarea {
+  border: 1px solid var(--moodle-tweaks-border-strong);
+  border-radius: var(--moodle-tweaks-radius-sm);
+  background-color: #fff;
+  color: var(--moodle-tweaks-text);
+}
+
+html.moodle-tweaks-theme .form-control:focus,
+html.moodle-tweaks-theme select.form-control:focus,
+html.moodle-tweaks-theme input:focus,
+html.moodle-tweaks-theme textarea:focus {
+  border-color: var(--moodle-tweaks-brand);
+  box-shadow: var(--moodle-tweaks-focus-ring);
+}
+
+html.moodle-tweaks-theme .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+}
+
+/* ---- Tablas ------------------------------------------------------------- */
+html.moodle-tweaks-theme table.table,
+html.moodle-tweaks-theme .generaltable {
+  border-color: var(--moodle-tweaks-border);
+}
+
+html.moodle-tweaks-theme .generaltable thead th,
+html.moodle-tweaks-theme table.table thead th {
+  background-color: var(--moodle-tweaks-surface-alt);
+  color: var(--moodle-tweaks-brand-darker);
+  border-color: var(--moodle-tweaks-border);
+  font-weight: 650;
+}
+
+html.moodle-tweaks-theme .generaltable tbody tr:hover,
+html.moodle-tweaks-theme table.table tbody tr:hover {
+  background-color: var(--moodle-tweaks-brand-tint);
+}
+
+/* ---- Listas / dropdowns ------------------------------------------------- */
+html.moodle-tweaks-theme .list-group-item.active {
+  background-color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+  color: #fff;
+}
+
+html.moodle-tweaks-theme .dropdown-menu {
+  border: 1px solid var(--moodle-tweaks-border);
+  border-radius: var(--moodle-tweaks-radius-sm);
+  box-shadow: var(--moodle-tweaks-shadow-md);
+}
+
+html.moodle-tweaks-theme .dropdown-item.active,
+html.moodle-tweaks-theme .dropdown-item:active {
+  background-color: var(--moodle-tweaks-brand);
+  color: #fff;
+}
+
+html.moodle-tweaks-theme .dropdown-item:focus,
+html.moodle-tweaks-theme .dropdown-item:hover {
+  background-color: var(--moodle-tweaks-brand-soft);
+  color: var(--moodle-tweaks-brand-dark);
+}
+
+/* ---- Progreso, paginacion, pestanas ------------------------------------ */
+html.moodle-tweaks-theme .progress-bar {
+  background-color: var(--moodle-tweaks-brand);
+}
+
+html.moodle-tweaks-theme .page-link {
+  color: var(--moodle-tweaks-brand);
+}
+
+html.moodle-tweaks-theme .page-item.active .page-link {
+  background-color: var(--moodle-tweaks-brand);
+  border-color: var(--moodle-tweaks-brand);
+  color: #fff;
+}
+
+html.moodle-tweaks-theme .nav-tabs .nav-link.active {
+  color: var(--moodle-tweaks-brand);
+  border-bottom-color: var(--moodle-tweaks-brand);
+}
+
+/* ---- Alertas y avisos --------------------------------------------------- */
+html.moodle-tweaks-theme .alert {
+  border-radius: var(--moodle-tweaks-radius);
+  border: 1px solid transparent;
+}
+
+html.moodle-tweaks-theme .alert-info {
+  background-color: var(--moodle-tweaks-brand-soft);
+  border-color: var(--moodle-tweaks-brand-light);
+  color: var(--moodle-tweaks-brand-darker);
+}
+
+/* ---- Accesibilidad ------------------------------------------------------- */
+
+/* Foco visible reforzado en los controles que inyecta MoodleTweaks. */
+.moodle-tweaks-back-to-top:focus-visible,
+.moodle-tweaks-upcoming-bar__link:focus-visible,
+.moodle-tweaks-upcoming-bar__close:focus-visible {
+  outline: 3px solid var(--moodle-tweaks-brand, #004987);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.55);
+}
+
+html.moodle-tweaks-dark .moodle-tweaks-back-to-top:focus-visible,
+html.moodle-tweaks-dark .moodle-tweaks-upcoming-bar__link:focus-visible,
+html.moodle-tweaks-dark .moodle-tweaks-upcoming-bar__close:focus-visible {
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Respeta a quien pide menos movimiento: transiciones y scroll instantaneos. */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  html *,
+  html *::before,
+  html *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

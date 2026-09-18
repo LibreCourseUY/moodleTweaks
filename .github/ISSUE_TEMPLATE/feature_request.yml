@@ -1,0 +1,47 @@
+name: Feature request
+description: Proponé una mejora o una feature nueva para MoodleTweaks.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de abrir, mirá el [`TODO.md`](../../TODO.md) — quizás la idea ya está anotada.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qué problema resuelve
+      description: Describí la situación actual que no te cierra o qué te gustaría poder hacer.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Cómo te lo imaginás. Detalle vale — comportamiento esperado, dónde entraría la configuración, etc.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Apariencia general / theme
+        - Modo oscuro
+        - Navegación
+        - Contenido de curso / actividades
+        - Foros / calendario
+        - Popup / configuración
+        - Onboarding / docs
+        - Otro
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: Ya intentaste algún workaround, otra extensión o un ajuste manual?
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Alcance
+      options:
+        - label: Estaría dispuesto a implementarlo / hacer un PR

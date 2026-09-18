@@ -1,0 +1,191 @@
+/*!
+ * MoodleTweaks — welcome.css
+ * Pagina de bienvenida / onboarding.
+ */
+
+:root {
+  --brand: #004987;
+  --brand-light: #e8f1f8;
+  --text: #16212b;
+  --muted: #5c6b78;
+  --bg: #f4f7fa;
+  --surface: #fff;
+  --border: #dbe3ea;
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #6fb0e2;
+    --brand-light: #16222d;
+    --text: #e7edf3;
+    --muted: #9aa8b5;
+    --bg: #0f151b;
+    --surface: #171f27;
+    --border: #2a353f;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 16px 56px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.welcome {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.welcome__hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 40, 70, 0.08);
+}
+
+.welcome__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  font-style: italic;
+  flex: 0 0 auto;
+}
+
+.welcome__hero h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.welcome__tagline {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.welcome__version {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome__intro {
+  margin: 22px 2px;
+  font-size: 1.02rem;
+}
+
+.welcome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.welcome__button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.welcome__button--primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.welcome__button--primary:hover {
+  filter: brightness(1.08);
+}
+
+.welcome__hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.welcome__section {
+  margin-top: 30px;
+}
+
+.welcome__section h2 {
+  font-size: 1.1rem;
+  margin: 0 0 14px;
+}
+
+.welcome__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.welcome__grid li {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.welcome__grid h3 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+
+.welcome__grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.welcome__news {
+  margin: 0;
+  padding: 14px 18px 14px 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.welcome__news li {
+  margin: 3px 0;
+}
+
+.welcome__footer {
+  margin-top: 34px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-size: 0.85em;
+}

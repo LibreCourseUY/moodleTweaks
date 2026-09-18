@@ -1,0 +1,102 @@
+/*!
+ * MoodleTweaks — upcoming.css
+ * Barra fija de proximas entregas (la inyecta el content script).
+ */
+
+.moodle-tweaks-upcoming-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1035;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--moodle-tweaks-brand, #004987);
+  color: #fff;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.2);
+  font-size: 0.85rem;
+}
+
+.moodle-tweaks-upcoming-bar__label {
+  flex: 0 0 auto;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.moodle-tweaks-upcoming-bar__list {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 0.9rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.moodle-tweaks-upcoming-bar__item {
+  flex: 0 0 auto;
+}
+
+.moodle-tweaks-upcoming-bar__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  max-width: 26rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.moodle-tweaks-upcoming-bar__link:hover {
+  background: rgba(255, 255, 255, 0.24);
+  text-decoration: none;
+}
+
+.moodle-tweaks-upcoming-bar__when {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+.moodle-tweaks-upcoming-bar__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.moodle-tweaks-upcoming-bar__close {
+  flex: 0 0 auto;
+  padding: 0.1rem 0.45rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.moodle-tweaks-upcoming-bar__close:hover,
+.moodle-tweaks-upcoming-bar__close:focus {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* En oscuro usamos el azul profundo de la marca para no encandilar. */
+html.moodle-tweaks-dark .moodle-tweaks-upcoming-bar {
+  background: var(--moodle-tweaks-brand-bg, #0d4d7c);
+}
+
+/* Con la barra visible, subimos el boton "volver arriba" para no taparlo. */
+html.moodle-tweaks-upcoming-ready .moodle-tweaks-back-to-top {
+  bottom: calc(2rem + 47px + 0.75rem + 44px);
+}

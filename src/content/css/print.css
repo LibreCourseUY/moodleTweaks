@@ -1,0 +1,67 @@
+/*!
+ * MoodleTweaks — print.css
+ * Estilos de impresion para paginas de contenido y cursos: se ocultan los
+ * controles de navegacion y se limpian fondos y sombras.
+ */
+
+@media print {
+  html.moodle-tweaks-theme body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  html.moodle-tweaks-theme #page,
+  html.moodle-tweaks-theme #page-content,
+  html.moodle-tweaks-theme #region-main-box,
+  html.moodle-tweaks-theme #region-main,
+  html.moodle-tweaks-theme .main-inner {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .navbar,
+  .navbar.fixed-top,
+  #page-navbar,
+  .drawer,
+  #theme_boost-drawers-primary,
+  #theme_boost-drawers-courseindex,
+  [data-region="fixed-drawer"],
+  .drawer-toggles,
+  .drawer-toggler,
+  .secondary-navigation,
+  .moremenu,
+  #courseindex,
+  .block_calendar_month,
+  .block_navigation,
+  .block_settings,
+  #page-footer,
+  .sticky-footer,
+  .moodle-tweaks-back-to-top,
+  #moodle-tweaks-upcoming-bar {
+    display: none !important;
+  }
+
+  html.moodle-tweaks-theme .card,
+  html.moodle-tweaks-theme .activity-item,
+  html.moodle-tweaks-theme .coursebox {
+    box-shadow: none !important;
+    border-color: #ccc !important;
+    break-inside: avoid;
+  }
+
+  html.moodle-tweaks-theme a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  html.moodle-tweaks-theme .course-section,
+  html.moodle-tweaks-theme .activity,
+  html.moodle-tweaks-theme .forumpost,
+  html.moodle-tweaks-theme table {
+    break-inside: avoid;
+  }
+}

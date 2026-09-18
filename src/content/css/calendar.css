@@ -1,0 +1,197 @@
+/*!
+ * MoodleTweaks — calendar.css
+ * Vista de calendario consistente y legible.
+ * Se activa con html.moodle-tweaks-calendar.
+ */
+
+html.moodle-tweaks-calendar {
+  /* ---- Cabecera y controles de mes ------------------------------------- */
+  .maincalendar {
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    padding: 0.75rem;
+  }
+
+  .calendarwrapper .controls {
+    margin-bottom: 0.5rem;
+  }
+
+  .calendar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .calendar-controls .current {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .calendar-controls .arrow_link {
+    color: var(--moodle-tweaks-brand);
+    text-decoration: none;
+    font-weight: 550;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius-sm);
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+
+  .calendar-controls .arrow_link:hover {
+    background: var(--moodle-tweaks-brand-soft);
+    border-color: var(--moodle-tweaks-brand-light);
+  }
+
+  .calendar-controls .arrow {
+    color: var(--moodle-tweaks-brand);
+  }
+
+  /* ---- Grilla mensual --------------------------------------------------- */
+  table.calendarmonth {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  table.calendarmonth thead th,
+  table.calendarmonth th.header {
+    background: var(--moodle-tweaks-surface-alt);
+    color: var(--moodle-tweaks-brand-darker);
+    border: none;
+    border-bottom: 2px solid var(--moodle-tweaks-border);
+    padding: 0.5rem 0.35rem;
+    font-weight: 650;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  table.calendarmonth td {
+    border: 1px solid var(--moodle-tweaks-border);
+    border-top: none;
+    vertical-align: top;
+    height: 5.5rem;
+    padding: 0.3rem;
+    background: var(--moodle-tweaks-surface);
+  }
+
+  table.calendarmonth td.dayblank {
+    background: var(--moodle-tweaks-surface-alt);
+    border-color: transparent;
+  }
+
+  table.calendarmonth td.day {
+    transition: background-color 0.12s ease;
+  }
+
+  table.calendarmonth td.day.clickable:hover {
+    background: var(--moodle-tweaks-brand-tint);
+    cursor: pointer;
+  }
+
+  table.calendarmonth td.weekend {
+    background: #f7f9fb;
+  }
+
+  table.calendarmonth td.today {
+    background: var(--moodle-tweaks-brand-soft);
+    box-shadow: inset 0 0 0 2px var(--moodle-tweaks-brand);
+  }
+
+  .day-number-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: var(--moodle-tweaks-text-muted);
+    font-weight: 550;
+  }
+
+  td.today .day-number-circle {
+    background: var(--moodle-tweaks-brand);
+    color: #fff;
+  }
+
+  /* ---- Eventos ---------------------------------------------------------- */
+  .maincalendar .calendarmonth ul li,
+  .maincalendar [data-region="event-item"] {
+    list-style: none;
+    border-radius: 4px;
+    margin-top: 2px;
+    padding: 1px 4px;
+    background: var(--moodle-tweaks-brand-soft);
+  }
+
+  .maincalendar .calendarmonth ul li > a,
+  .maincalendar [data-region="event-item"] a,
+  .eventname a {
+    color: var(--moodle-tweaks-brand-dark);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .maincalendar .calendarmonth ul li > a:hover,
+  .maincalendar [data-region="event-item"] a:hover,
+  .eventname a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---- Filtros ---------------------------------------------------------- */
+  .calendar_filters,
+  .maincalendar .header {
+    background: transparent;
+    border: none;
+  }
+
+  .maincalendar .header .custom-select,
+  .maincalendar .header select {
+    border-radius: var(--moodle-tweaks-radius-sm);
+  }
+
+  /* ---- Mini calendario del bloque lateral ------------------------------ */
+  .block_calendar_month .minicalendar,
+  .block_calendar_month .maincalendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .block_calendar_month .minicalendar th,
+  .block_calendar_month .maincalendar th {
+    color: var(--moodle-tweaks-text-muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  .block_calendar_month .minicalendar td,
+  .block_calendar_month .maincalendar td {
+    text-align: center;
+    padding: 0.15rem;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .block_calendar_month .maincalendar {
+    padding: 0.35rem;
+  }
+
+  .block_calendar_month .minicalendar td.today,
+  .block_calendar_month .maincalendar td.today {
+    background: var(--moodle-tweaks-brand);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .block_calendar_month .minicalendar td a,
+  .block_calendar_month .maincalendar td a {
+    color: var(--moodle-tweaks-brand);
+    text-decoration: none;
+  }
+}

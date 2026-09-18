@@ -1,0 +1,334 @@
+/*!
+ * MoodleTweaks — navigation.css
+ * Mejoras de navegacion: barra superior, migas, submenus,
+ * cajones laterales e indice del curso.
+ * Se activa con html.moodle-tweaks-navigation.
+ */
+
+html.moodle-tweaks-navigation {
+  /* ---- Barra superior --------------------------------------------------- */
+  .navbar.fixed-top {
+    background-color: var(--moodle-tweaks-brand) !important;
+    min-height: 61px;
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    border-bottom: none;
+  }
+
+  .navbar.fixed-top .navbar-brand {
+    color: #fff;
+  }
+
+  .navbar.fixed-top .nav-link {
+    color: rgba(255, 255, 255, 0.88);
+    border-radius: var(--moodle-tweaks-radius-sm);
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+
+  .navbar.fixed-top .nav-link:hover,
+  .navbar.fixed-top .nav-link:focus {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .navbar.fixed-top .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .navbar.fixed-top .divider {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .navbar.fixed-top .usermenu .dropdown-toggle,
+  .navbar.fixed-top .usermenu a:not(.dropdown-item) {
+    color: #fff;
+  }
+
+  .navbar.fixed-top .btn,
+  .navbar.fixed-top .aabtn {
+    color: #fff;
+  }
+
+  .navbar.fixed-top .btn:hover,
+  .navbar.fixed-top .aabtn:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+  }
+
+  /* El contenido de los desplegables de la barra (notificaciones, mensajes,
+   * usuario) no se apoya sobre el azul: recupera el color de texto normal. */
+  .navbar.fixed-top .popover-region-container .btn,
+  .navbar.fixed-top .popover-region-container .aabtn,
+  .navbar.fixed-top .dropdown-menu .btn,
+  .navbar.fixed-top .message-app .btn {
+    color: var(--moodle-tweaks-text);
+  }
+
+  /* Boton del buscador: a juego con la barra en lugar del gris del tema */
+  .navbar.fixed-top .simplesearchform .btn-submit {
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .navbar.fixed-top .simplesearchform .btn-submit:hover,
+  .navbar.fixed-top .simplesearchform .btn-submit:focus {
+    background-color: rgba(255, 255, 255, 0.24);
+    color: #fff;
+  }
+
+  /* Buscador integrado en la barra */
+  .navbar.fixed-top .searchform-navbar input,
+  .navbar.fixed-top #searchform-navbar input {
+    background-color: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .navbar.fixed-top .searchform-navbar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Buscador siempre desplegado en la barra (solo pantallas grandes): el tema
+   * solo muestra una lupa y abre el campo (como panel blanco a pantalla
+   * completa) al pulsarla. En escritorio lo dejamos visible en linea y
+   * ocultamos la lupa y el boton de cerrar; en movil se mantiene el de antes. */
+  @media (width >= 960px) {
+  #usernavigation .simplesearchform .collapse,
+  #usernavigation .simplesearchform .collapse.show,
+  #usernavigation .simplesearchform .collapsing {
+    display: flex !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: transparent !important;
+    z-index: auto !important;
+  }
+
+  #usernavigation .simplesearchform {
+    display: flex;
+    align-items: center;
+  }
+
+  #usernavigation .simplesearchform .searchform-navbar {
+    margin: 0 !important;
+  }
+
+  #usernavigation .simplesearchform .input-group {
+    align-items: center;
+  }
+
+  #usernavigation .simplesearchform .form-control {
+    width: 15rem;
+  }
+
+  #usernavigation .simplesearchform .btn-open,
+  #usernavigation .simplesearchform .btn-close {
+    display: none !important;
+  }
+  }
+
+  /* ---- Cabecera de pagina y migas --------------------------------------- */
+  #page-header {
+    padding-top: 0.9rem;
+  }
+
+  #page-header .page-context-header {
+    margin-top: 0.25rem;
+  }
+
+  #page-header .page-header-headings h1 {
+    color: var(--moodle-tweaks-brand-darker);
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb-item a {
+    color: var(--moodle-tweaks-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb-item a:hover {
+    color: var(--moodle-tweaks-brand);
+    text-decoration: underline;
+  }
+
+  .breadcrumb-item.active,
+  .breadcrumb-item span {
+    color: var(--moodle-tweaks-text-muted);
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: var(--moodle-tweaks-text-faint);
+  }
+
+  /* ---- Submenu del curso (pestanas) ------------------------------------- */
+  .secondary-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 1015;
+    background: var(--moodle-tweaks-surface);
+    padding: 0.35rem 0 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .secondary-navigation .moremenu {
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+  }
+
+  .secondary-navigation .moremenu .nav-tabs {
+    border-bottom: none;
+    gap: 0.15rem;
+  }
+
+  .secondary-navigation .moremenu .nav-link {
+    color: var(--moodle-tweaks-text-muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 0.5rem 0.8rem;
+    font-weight: 550;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+
+  .secondary-navigation .moremenu .nav-link:hover {
+    color: var(--moodle-tweaks-brand);
+    border-bottom-color: var(--moodle-tweaks-brand-light);
+    background: transparent;
+  }
+
+  .secondary-navigation .moremenu .nav-link.active {
+    color: var(--moodle-tweaks-brand);
+    border-bottom-color: var(--moodle-tweaks-brand);
+    background: transparent;
+  }
+
+  /* ---- Cajones laterales ------------------------------------------------ */
+  .drawer {
+    background-color: var(--moodle-tweaks-surface);
+    border-right: 1px solid var(--moodle-tweaks-border);
+    box-shadow: none;
+  }
+
+  .drawer .drawerheader {
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    background: var(--moodle-tweaks-surface);
+    min-height: 60px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .drawer .drawercontent {
+    background: var(--moodle-tweaks-surface);
+    padding: 0.5rem;
+  }
+
+  .drawer .list-group-item {
+    border: none;
+    border-radius: var(--moodle-tweaks-radius-sm);
+    margin-bottom: 2px;
+    color: var(--moodle-tweaks-text);
+    font-weight: 550;
+    padding: 0.6rem 0.75rem;
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+
+  .drawer .list-group-item:hover {
+    background-color: var(--moodle-tweaks-brand-soft);
+    color: var(--moodle-tweaks-brand);
+  }
+
+  .drawer .list-group-item.active {
+    background-color: var(--moodle-tweaks-brand);
+    color: #fff;
+  }
+
+  .drawer-toggler .btn {
+    border: 1px solid var(--moodle-tweaks-border);
+    background: var(--moodle-tweaks-surface);
+    color: var(--moodle-tweaks-brand);
+    border-radius: var(--moodle-tweaks-radius-sm);
+    box-shadow: var(--moodle-tweaks-shadow-xs);
+  }
+
+  .drawer-toggler .btn:hover {
+    background: var(--moodle-tweaks-brand-soft);
+  }
+
+  /* ---- Indice del curso (courseindex) ----------------------------------- */
+  #courseindex.courseindex,
+  #courseindex .courseindex {
+    padding: 0.35rem;
+  }
+
+  #courseindex .courseindex-item {
+    margin-bottom: 2px;
+    border-radius: var(--moodle-tweaks-radius-sm);
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+
+  #courseindex .courseindex-item .courseindex-link,
+  #courseindex .courseindex-item .courseindex-chevron {
+    color: var(--moodle-tweaks-text);
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  #courseindex .courseindex-item .courseindex-link:hover,
+  #courseindex .courseindex-item .courseindex-link:focus,
+  #courseindex .courseindex-item .courseindex-chevron:hover,
+  #courseindex .courseindex-item .courseindex-chevron:focus {
+    color: var(--moodle-tweaks-brand);
+  }
+
+  #courseindex .courseindex-item:hover,
+  #courseindex .courseindex-item:focus {
+    background-color: var(--moodle-tweaks-brand-soft);
+  }
+
+  #courseindex .courseindex-item.courseindex-section-title a {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 700;
+  }
+
+  #courseindex .courseindex-item.dimmed,
+  #courseindex .courseindex-item.dimmed .courseindex-link,
+  #courseindex .courseindex-item.dimmed .courseindex-chevron {
+    color: var(--moodle-tweaks-text-faint);
+  }
+
+  #courseindex .courseindex-item.indented .courseindex-link {
+    font-weight: 450;
+    font-size: 0.92rem;
+  }
+
+  /* Seccion e item actuales: reemplazan el azul por defecto del tema */
+  #courseindex .courseindex-item.pageitem,
+  #courseindex .courseindex-item.pageitem:hover,
+  #courseindex .courseindex-item.pageitem:focus {
+    background-color: var(--moodle-tweaks-brand);
+    color: #fff;
+  }
+
+  #courseindex .courseindex-item.pageitem .courseindex-link,
+  #courseindex .courseindex-item.pageitem .courseindex-chevron,
+  #courseindex .courseindex-item.pageitem a {
+    color: #fff !important;
+  }
+
+  #courseindex .courseindex-section.current,
+  #courseindex .courseindex-section.current:hover {
+    border-left-color: var(--moodle-tweaks-brand);
+  }
+}
+

@@ -1,0 +1,65 @@
+/*!
+ * MoodleTweaks — highlight.css
+ * Resalta elementos activos, no leidos y las publicaciones propias.
+ * Se activa con html.moodle-tweaks-highlight.
+ */
+
+html.moodle-tweaks-highlight {
+  /* Migas: el ultimo nivel (pagina actual) cobra protagonismo */
+  .breadcrumb-item:last-child {
+    color: var(--moodle-tweaks-brand);
+    font-weight: 600;
+  }
+
+  /* Items de navegacion activos en la barra superior */
+  .navbar.fixed-top .nav-link.active,
+  .navbar.fixed-top .active > .nav-link {
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+
+  /* Enlace activo del submenu del curso */
+  .secondary-navigation .moremenu .nav-link.active {
+    font-weight: 650;
+  }
+
+  /* Publicaciones propias en foros */
+  .forumpost.moodle-tweaks-mine {
+    border-left: 4px solid var(--moodle-tweaks-accent) !important;
+    background: linear-gradient(
+      90deg,
+      rgba(15, 138, 193, 0.06) 0%,
+      transparent 40%
+    );
+  }
+
+  .forumpost.moodle-tweaks-mine .header a[href*="user/view.php"]::after,
+  .forumpost.moodle-tweaks-mine .header a[href*="user/profile.php"]::after {
+    content: " (vos)";
+    color: var(--moodle-tweaks-accent);
+    font-weight: 500;
+    font-size: 0.82em;
+  }
+
+  /* Mensajes sin leer */
+  .discussion.unread .topic a {
+    color: var(--moodle-tweaks-brand-darker);
+  }
+
+  /* Resultados de busqueda */
+  mark,
+  .highlight,
+  .searchresult mark {
+    background: #ffe9a8;
+    color: var(--moodle-tweaks-brand-darker);
+    padding: 0 0.15em;
+    border-radius: 3px;
+  }
+
+  /* Foco claro en enlaces de contenido */
+  a.aalink:focus-visible,
+  .activityname a:focus-visible {
+    outline: 2px solid var(--moodle-tweaks-brand);
+    outline-offset: 2px;
+  }
+}

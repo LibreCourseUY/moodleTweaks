@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log*
+
+dist/
+*.zip
+*.xpi
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/

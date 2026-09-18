@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bienvenido a MoodleTweaks</title>
+    <link rel="stylesheet" href="welcome.css" />
+  </head>
+  <body>
+    <main class="welcome">
+      <header class="welcome__hero">
+        <span class="welcome__logo" aria-hidden="true">e</span>
+        <div>
+          <h1>MoodleTweaks</h1>
+          <p class="welcome__tagline">
+            EVA FING más claro, cómodo y rápido de recorrer.
+          </p>
+        </div>
+        <span class="welcome__version"
+          >v<span id="version">1.0.0</span></span
+        >
+      </header>
+
+      <p class="welcome__intro">
+        MoodleTweaks se activa automáticamente en
+        <strong>eva.fing.edu.uy</strong>. Todos los módulos se pueden prender o
+        apagar desde el ícono de la extensión; los cambios se aplican al
+        instante, sin recargar.
+      </p>
+
+      <nav class="welcome__actions">
+        <a class="welcome__button welcome__button--primary" href="https://eva.fing.edu.uy/">
+          Ir a EVA FING
+        </a>
+        <span class="welcome__hint">Hacé clic en el ícono de MoodleTweaks para configurarla.</span>
+      </nav>
+
+      <section class="welcome__section" aria-labelledby="features-title">
+        <h2 id="features-title">Qué incluye</h2>
+        <ul class="welcome__grid">
+          <li>
+            <h3>Modo oscuro</h3>
+            <p>Manual o automático según el sistema, con variantes tenue y AMOLED.</p>
+          </li>
+          <li>
+            <h3>Escala y densidad</h3>
+            <p>Ajustá el tamaño del texto y cuánto contenido entra en pantalla.</p>
+          </li>
+          <li>
+            <h3>Navegación mejorada</h3>
+            <p>Barra, migas de pan, submenús e índice del curso más claros.</p>
+          </li>
+          <li>
+            <h3>Foros y calendario</h3>
+            <p>Debates, publicaciones y vista mensual fáciles de leer.</p>
+          </li>
+          <li>
+            <h3>Próximas entregas</h3>
+            <p>Una barra con las tareas y eventos que vienen, siempre a la vista.</p>
+          </li>
+          <li>
+            <h3>Panel limpio</h3>
+            <p>Sin banner gigante y con el índice del curso colapsado por defecto.</p>
+          </li>
+          <li>
+            <h3>Contador en el ícono</h3>
+            <p>Avisos, mensajes y entregas pendientes de un vistazo.</p>
+          </li>
+          <li>
+            <h3>Tu propio CSS</h3>
+            <p>Para quienes quieran llevar la personalización un paso más allá.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="welcome__section" aria-labelledby="news-title">
+        <h2 id="news-title">Novedades de esta versión</h2>
+        <ul class="welcome__news">
+          <li>Modo oscuro automático y variantes tenue / AMOLED.</li>
+          <li>Escala de tamaño de fuente y control de densidad.</li>
+          <li>Barra de próximas entregas y panel limpio.</li>
+          <li>Contador de pendientes en el ícono de la extensión.</li>
+          <li>Caja de CSS personalizado y buscador de ajustes en el popup.</li>
+          <li>Soporte de <code>prefers-reduced-motion</code> y estilos de impresión.</li>
+        </ul>
+      </section>
+
+      <footer class="welcome__footer">
+        <p>
+          MoodleTweaks no recolecta datos: solo guarda tus preferencias con la API
+          <code>storage</code> del navegador y las aplica en EVA FING.
+        </p>
+      </footer>
+    </main>
+    <script src="welcome.js"></script>
+  </body>
+</html>

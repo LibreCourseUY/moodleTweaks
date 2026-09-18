@@ -1,0 +1,55 @@
+/*!
+ * MoodleTweaks — compact.css
+ * Modo compacto: mas contenido visible reduciendo espacios.
+ * Se activa con html.moodle-tweaks-compact.
+ * La densidad ya no fija el tamanio de fuente: eso lo maneja la escala
+ * tipografica (--moodle-tweaks-font-scale). Aca solo se reducen los espacios.
+ * Se carga al final para poder ajustar los modulos anteriores.
+ */
+
+html.moodle-tweaks-compact .navbar.fixed-top {
+  min-height: 52px;
+}
+
+html.moodle-tweaks-compact .secondary-navigation {
+  top: 0;
+}
+
+html.moodle-tweaks-compact .discussion-list thead th {
+  top: 0;
+}
+
+html.moodle-tweaks-compact .activity {
+  margin-bottom: 0.3rem;
+}
+
+html.moodle-tweaks-compact .activity-item {
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--moodle-tweaks-radius-sm);
+}
+
+html.moodle-tweaks-compact .card .card-body,
+html.moodle-tweaks-compact .coursebox,
+html.moodle-tweaks-compact .maincalendar {
+  padding: 0.6rem !important;
+}
+
+html.moodle-tweaks-compact .drawer .list-group-item {
+  padding: 0.4rem 0.6rem;
+}
+
+html.moodle-tweaks-compact #courseindex .courseindex-link,
+html.moodle-tweaks-compact #courseindex .courseindex-section-title a {
+  padding: 0.35rem 0.55rem;
+}
+
+html.moodle-tweaks-compact .generaltable td,
+html.moodle-tweaks-compact .generaltable th,
+html.moodle-tweaks-compact table.table td,
+html.moodle-tweaks-compact table.table th {
+  padding: 0.35rem 0.5rem;
+}
+
+html.moodle-tweaks-compact table.calendarmonth td {
+  height: 4rem;
+}

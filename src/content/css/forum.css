@@ -1,0 +1,191 @@
+/*!
+ * MoodleTweaks — forum.css
+ * Legibilidad y jerarquia en foros: listado de debates y publicaciones.
+ * Se activa con html.moodle-tweaks-forum.
+ */
+
+html.moodle-tweaks-forum {
+  /* ---- Listado de debates ---------------------------------------------- */
+  .discussion-list {
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    border-collapse: separate;
+    width: 100%;
+  }
+
+  .discussion-list thead th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--moodle-tweaks-surface-alt);
+    color: var(--moodle-tweaks-brand-darker);
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    font-weight: 650;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .discussion-list tbody tr.discussion {
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    transition: background-color 0.12s ease;
+  }
+
+  .discussion-list tbody tr.discussion:last-child {
+    border-bottom: none;
+  }
+
+  .discussion-list tbody tr.discussion:hover {
+    background-color: var(--moodle-tweaks-brand-tint);
+  }
+
+  .discussion-list .topic {
+    font-weight: 600;
+  }
+
+  .discussion-list .topic a {
+    color: var(--moodle-tweaks-brand-darker);
+    text-decoration: none;
+  }
+
+  .discussion-list .topic a:hover {
+    color: var(--moodle-tweaks-brand);
+    text-decoration: underline;
+  }
+
+  .discussion-list .author,
+  .discussion-list .lastpost,
+  .discussion-list .replies {
+    color: var(--moodle-tweaks-text-muted);
+    font-size: 0.92rem;
+  }
+
+  .discussion-list .author-info {
+    color: var(--moodle-tweaks-text-muted);
+  }
+
+  .discussion-list .discussion.subscribed td {
+    box-shadow: inset 3px 0 0 var(--moodle-tweaks-brand-light);
+  }
+
+  .discussion-list .discussion.unread td {
+    box-shadow: inset 3px 0 0 var(--moodle-tweaks-brand);
+  }
+
+  .discussion-list .discussion.unread .topic a {
+    font-weight: 700;
+  }
+
+  .discussion-list .unread .badge {
+    background-color: var(--moodle-tweaks-brand) !important;
+  }
+
+  .mark-all-read-button {
+    color: var(--moodle-tweaks-brand);
+    font-weight: 550;
+  }
+
+  /* ---- Publicaciones de un debate -------------------------------------- */
+  .forum-post-container {
+    margin-bottom: 1rem;
+  }
+
+  .forumpost {
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border) !important;
+    border-radius: var(--moodle-tweaks-radius);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    padding: 0.85rem !important;
+  }
+
+  .forumpost.firstpost,
+  .forumpost.starter {
+    border-left: 4px solid var(--moodle-tweaks-brand) !important;
+  }
+
+  .forumpost .header {
+    background: transparent;
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    padding-bottom: 0.55rem;
+    margin: 0 0 0.75rem !important;
+  }
+
+  .forumpost .header h3,
+  .forumpost .header [data-region-content="forum-post-core-subject"] {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 650;
+  }
+
+  .forumpost .header a[href*="user/view.php"],
+  .forumpost .header a[href*="user/profile.php"] {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .forumpost .header a[href*="user/view.php"]:hover,
+  .forumpost .header a[href*="user/profile.php"]:hover {
+    color: var(--moodle-tweaks-brand);
+    text-decoration: underline;
+  }
+
+  .forumpost .header time,
+  .forumpost .header .text-muted {
+    color: var(--moodle-tweaks-text-faint);
+    font-size: 0.85rem;
+  }
+
+  .forumpost .post-content-container {
+    padding: 0;
+    color: var(--moodle-tweaks-text);
+    line-height: 1.6;
+  }
+
+  .forumpost .body-content-container {
+    margin: 0;
+  }
+
+  .discussionname {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 650;
+  }
+
+  .forumpost .post-actions .btn,
+  .forumpost .post-actions a {
+    color: var(--moodle-tweaks-text-muted);
+    border-radius: var(--moodle-tweaks-radius-sm);
+  }
+
+  .forumpost .post-actions .btn:hover,
+  .forumpost .post-actions a:hover {
+    color: var(--moodle-tweaks-brand);
+    background-color: var(--moodle-tweaks-brand-soft);
+  }
+
+  .forumpost .author-groups-container .badge {
+    background-color: var(--moodle-tweaks-brand-soft);
+    color: var(--moodle-tweaks-brand);
+    border: 1px solid var(--moodle-tweaks-brand-light);
+  }
+
+  .forumpost .attachment,
+  .forumpost .post-attachment {
+    border: 1px solid var(--moodle-tweaks-border-strong);
+    border-radius: var(--moodle-tweaks-radius-sm);
+    padding: 0.5rem;
+  }
+
+  /* ---- Navegacion entre debates ---------------------------------------- */
+  .discussion-nav .btn,
+  .discussion-nav a {
+    border-radius: var(--moodle-tweaks-radius-sm);
+  }
+
+  .prev-discussion a,
+  .next-discussion a {
+    color: var(--moodle-tweaks-brand);
+    font-weight: 550;
+  }
+}

@@ -1,0 +1,296 @@
+/*!
+ * MoodleTweaks — course.css
+ * Estilo consistente para el contenido de cursos: pestanas de seccion,
+ * listas de actividades, badges y listados de cursos.
+ * Se activa con html.moodle-tweaks-activities.
+ */
+
+html.moodle-tweaks-activities {
+  /* ---- Pestanas de secciones (formato onetopic) ------------------------- */
+  .defaulttabs,
+  #tabs-tree-start {
+    margin-bottom: 1rem;
+  }
+
+  .format_onetopic-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    padding-bottom: 0.5rem;
+  }
+
+  .format_onetopic-tabs .nav-item {
+    margin: 0;
+  }
+
+  .format_onetopic-tabs .nav-link {
+    color: var(--moodle-tweaks-text-muted);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-weight: 550;
+    transition: all 0.12s ease;
+  }
+
+  .format_onetopic-tabs .nav-link:hover {
+    background-color: var(--moodle-tweaks-brand-soft);
+    color: var(--moodle-tweaks-brand);
+  }
+
+  .format_onetopic-tabs .nav-link.active {
+    background-color: var(--moodle-tweaks-brand);
+    border-color: var(--moodle-tweaks-brand);
+    color: #fff;
+    box-shadow: var(--moodle-tweaks-shadow-brand);
+  }
+
+  .format_onetopic-tabs .nav-link .fa-chevron-down {
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  /* ---- Contenedor de seccion ------------------------------------------- */
+  .course-content .single-section,
+  .course-content .course-section {
+    background: transparent;
+  }
+
+  .course-section {
+    border: none;
+    background: transparent;
+  }
+
+  .course-section .content {
+    background: transparent;
+  }
+
+  .section_availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #fff4e0;
+    color: #8a5a00;
+    border: 1px solid #f0d59a;
+    border-radius: var(--moodle-tweaks-radius-sm);
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ---- Lista de actividades -------------------------------------------- */
+  .course-content ul.section,
+  .course-content ul.cmlist {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .activity {
+    margin-bottom: 0.55rem;
+  }
+
+  .activity-item {
+    position: relative;
+    display: block;
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border);
+    border-left: 3px solid transparent;
+    border-radius: var(--moodle-tweaks-radius);
+    padding: 0.7rem 0.9rem;
+    box-shadow: var(--moodle-tweaks-shadow-xs);
+    transition: border-color 0.13s ease, box-shadow 0.13s ease,
+      transform 0.08s ease, background-color 0.13s ease;
+  }
+
+  .activity-item:hover,
+  .activity-item:focus-within {
+    border-left-color: var(--moodle-tweaks-brand);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    transform: translateY(-1px);
+  }
+
+  /* En modo edicion el tema usa un borde azul de Bootstrap: lo alineamos a la marca */
+  .editing .activity-item:hover,
+  .editing .activity-item.selected {
+    outline: 2px solid var(--moodle-tweaks-brand) !important;
+    outline-offset: 1px;
+  }
+
+  .editing .activity.dragging .activity-item {
+    border-color: var(--moodle-tweaks-brand);
+  }
+
+  /* La rejilla de la actividad la define el tema (grid con areas);
+     solo estilizamos sus piezas para no romper el layout. */
+  .activity-name-area {
+    min-width: 0;
+  }
+
+  .activityname,
+  .activityname a {
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  .activity-item:hover .activityname,
+  .activity-item:hover .activityname a {
+    color: var(--moodle-tweaks-brand);
+  }
+
+  .activityname .accesshide,
+  .instancename .accesshide {
+    color: var(--moodle-tweaks-text-faint);
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+
+  /* Icono de actividad: el tema ya define tamano, padding y color por tipo;
+     no lo sobreescribimos para no romper la rejilla de la actividad. */
+
+  /* Etiquetas / texto libre dentro de la seccion */
+  .activity-item.activityinline {
+    background: var(--moodle-tweaks-surface-alt);
+    border-left: none;
+    box-shadow: none;
+  }
+
+  .activity-item.activityinline:hover {
+    transform: none;
+    border-color: var(--moodle-tweaks-brand-light);
+  }
+
+  .activity-altcontent {
+    width: 100%;
+    color: var(--moodle-tweaks-text);
+    line-height: 1.55;
+  }
+
+  .activity-altcontent :is(h1, h2, h3, h4, h5) {
+    margin-top: 0.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Badges y estado de finalizacion */
+  .activitybadge:not(:empty),
+  .activitybadge.badge {
+    background-color: var(--moodle-tweaks-brand-soft);
+    color: var(--moodle-tweaks-brand);
+    border: 1px solid var(--moodle-tweaks-brand-light);
+    font-weight: 550;
+  }
+
+  .activity-item .badge.bg-primary {
+    background-color: var(--moodle-tweaks-brand) !important;
+  }
+
+  .completioncheckbox,
+  .autocompletion {
+    accent-color: var(--moodle-tweaks-brand);
+  }
+
+  /* ---- Navegacion entre secciones -------------------------------------- */
+  .section-navigation {
+    margin-top: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .section-navigation .btn,
+  .section-navigation a {
+    border-radius: var(--moodle-tweaks-radius-sm);
+  }
+
+  /* ---- Pagina principal: mis cursos ------------------------------------ */
+  #frontpage-course-list .courses.frontpage-course-list-enrolled {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  #frontpage-course-list .coursebox,
+  .courses .coursebox {
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+    padding: 1rem;
+    transition: box-shadow 0.13s ease, transform 0.1s ease;
+  }
+
+  #frontpage-course-list .coursebox {
+    margin-bottom: 0;
+  }
+
+  .coursebox:hover {
+    box-shadow: var(--moodle-tweaks-shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .coursebox .coursename,
+  .coursebox .coursename a {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .coursebox .coursename a:hover {
+    color: var(--moodle-tweaks-brand);
+  }
+
+  .coursebox .teachers {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .coursebox .teachers .font-weight-bold {
+    color: var(--moodle-tweaks-text-muted);
+    font-weight: 500 !important;
+  }
+
+  .coursebox .summary {
+    color: var(--moodle-tweaks-text-muted);
+  }
+
+  /* ---- Listado completo de cursos -------------------------------------- */
+  .course_category_tree .category {
+    background: var(--moodle-tweaks-surface);
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+
+  .course_category_tree .category .info {
+    padding: 0.75rem 1rem;
+  }
+
+  .course_category_tree .categoryname,
+  .course_category_tree .categoryname a {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .course_category_tree .collapseexpand {
+    color: var(--moodle-tweaks-brand);
+    font-weight: 550;
+  }
+
+  /* ---- Perfil ----------------------------------------------------------- */
+  .profile_tree .node_category {
+    border: 1px solid var(--moodle-tweaks-border);
+    border-radius: var(--moodle-tweaks-radius);
+    box-shadow: var(--moodle-tweaks-shadow-sm);
+  }
+
+  .profile_tree .node_category .card-body > h3,
+  .profile_tree .node_category .card-body > .lead {
+    color: var(--moodle-tweaks-brand-darker);
+    font-weight: 650;
+    border-bottom: 1px solid var(--moodle-tweaks-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "MoodleTweaks",
+  "version": "1.1.0",
+  "description": "Mejora la navegación y unifica el estilo visual de EVA FING (eva.fing.edu.uy).",
+  "icons": {
+    "16": "src/icons/icon16.png",
+    "32": "src/icons/icon32.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "MoodleTweaks",
+    "default_icon": {
+      "16": "src/icons/icon16.png",
+      "32": "src/icons/icon32.png",
+      "48": "src/icons/icon48.png",
+      "128": "src/icons/icon128.png"
+    }
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://eva.fing.edu.uy/*"],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "scripts": ["src/background/service-worker.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://eva.fing.edu.uy/*"],
+      "css": [
+        "src/content/css/base.css",
+        "src/content/css/navigation.css",
+        "src/content/css/course.css",
+        "src/content/css/forum.css",
+        "src/content/css/calendar.css",
+        "src/content/css/highlight.css",
+        "src/content/css/dashboard.css",
+        "src/content/css/compact.css",
+        "src/content/css/back-to-top.css",
+        "src/content/css/upcoming.css",
+        "src/content/css/dark.css",
+        "src/content/css/print.css"
+      ],
+      "js": ["src/shared/settings.js", "src/content/moodle-tweaks.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "moodletweaks@fing.local",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}

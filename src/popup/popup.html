@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MoodleTweaks</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="moodle-tweaks-header">
+      <div class="moodle-tweaks-header__brand">
+        <span class="moodle-tweaks-header__logo" aria-hidden="true">e</span>
+        <div>
+          <h1>MoodleTweaks</h1>
+          <p>EVA FING más claro y navegable</p>
+        </div>
+      </div>
+      <label class="moodle-tweaks-master" title="Activar o desactivar todo">
+        <input id="master" type="checkbox" />
+        <span class="moodle-tweaks-master__slider" aria-hidden="true"></span>
+        <span class="sr-only">Activar MoodleTweaks</span>
+      </label>
+    </header>
+
+    <div class="moodle-tweaks-site" id="site-status" role="status">
+      <span class="moodle-tweaks-site__dot" aria-hidden="true"></span>
+      <span id="site-status-text">Comprobando…</span>
+    </div>
+
+    <div class="moodle-tweaks-toolbar">
+      <input
+        id="search"
+        class="moodle-tweaks-search"
+        type="search"
+        placeholder="Buscar ajuste…"
+        aria-label="Buscar ajuste"
+        autocomplete="off"
+      />
+    </div>
+
+    <main class="moodle-tweaks-main">
+      <section class="moodle-tweaks-group" aria-labelledby="group-style">
+        <h2 id="group-style">Estilo</h2>
+        <ul class="moodle-tweaks-list">
+          <li class="moodle-tweaks-item" data-item="theme" data-search="tema consistente paleta tipografia colores">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-theme">
+                <span class="moodle-tweaks-row__title">Tema consistente</span>
+                <span class="moodle-tweaks-row__desc">Paleta, tipografía y componentes uniformes</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-theme" type="checkbox" data-key="theme" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="theme" title="Restablecer" aria-label="Restablecer Tema consistente">↺</button>
+            </div>
+          </li>
+
+          <li class="moodle-tweaks-item" data-item="dark" data-search="modo oscuro dark noche">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-dark">
+                <span class="moodle-tweaks-row__title">Modo oscuro</span>
+                <span class="moodle-tweaks-row__desc">Superficies y texto oscuros</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-dark" type="checkbox" data-key="dark" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="dark" title="Restablecer" aria-label="Restablecer Modo oscuro">↺</button>
+            </div>
+          </li>
+
+          <li class="moodle-tweaks-item" data-item="darkAuto" data-search="automatico sistema prefers-color-scheme oscuro">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-dark-auto">
+                <span class="moodle-tweaks-row__title">Oscuro automático</span>
+                <span class="moodle-tweaks-row__desc">Sigue la preferencia del sistema</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-dark-auto" type="checkbox" data-key="darkAuto" data-master="off" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="darkAuto" title="Restablecer" aria-label="Restablecer Oscuro automático">↺</button>
+            </div>
+          </li>
+
+          <li class="moodle-tweaks-item" data-item="darkVariant" data-search="variante amoled negro puro dim tenue">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="select-dark-variant">
+                <span class="moodle-tweaks-row__title">Variante de oscuro</span>
+                <span class="moodle-tweaks-row__desc">Tenue o negro puro (AMOLED)</span>
+              </label>
+              <select id="select-dark-variant" class="moodle-tweaks-select" data-key="darkVariant">
+                <option value="default">Estándar</option>
+                <option value="dim">Tenue</option>
+                <option value="amoled">AMOLED</option>
+              </select>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="darkVariant" title="Restablecer" aria-label="Restablecer Variante de oscuro">↺</button>
+            </div>
+          </li>
+
+          <li class="moodle-tweaks-item" data-item="fontScale" data-search="tamanio fuente letra zoom escala">
+            <div class="moodle-tweaks-row moodle-tweaks-row--stack">
+              <label class="moodle-tweaks-row__text" for="range-font-scale">
+                <span class="moodle-tweaks-row__title">Tamaño de fuente</span>
+                <span class="moodle-tweaks-row__desc">Escala todo el texto del sitio</span>
+              </label>
+              <span class="moodle-tweaks-range">
+                <input id="range-font-scale" type="range" data-key="fontScale" min="85" max="130" step="5" value="100" />
+                <output id="font-scale-value" for="range-font-scale">100%</output>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="fontScale" title="Restablecer" aria-label="Restablecer Tamaño de fuente">↺</button>
+            </div>
+          </li>
+
+          <li class="moodle-tweaks-item" data-item="density" data-search="densidad compacto espacio espaciado">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="select-density">
+                <span class="moodle-tweaks-row__title">Densidad</span>
+                <span class="moodle-tweaks-row__desc">Cuánto contenido entra en pantalla</span>
+              </label>
+              <select id="select-density" class="moodle-tweaks-select" data-key="density">
+                <option value="comfortable">Cómoda</option>
+                <option value="compact">Compacta</option>
+              </select>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="density" title="Restablecer" aria-label="Restablecer Densidad">↺</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="moodle-tweaks-group" aria-labelledby="group-nav">
+        <h2 id="group-nav">Navegación</h2>
+        <ul class="moodle-tweaks-list">
+          <li class="moodle-tweaks-item" data-item="navigation" data-search="navegacion barra migas submenus indice">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-navigation">
+                <span class="moodle-tweaks-row__title">Navegación mejorada</span>
+                <span class="moodle-tweaks-row__desc">Barra, migas, submenús e índice del curso</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-navigation" type="checkbox" data-key="navigation" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="navigation" title="Restablecer" aria-label="Restablecer Navegación mejorada">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="highlight" data-search="resaltar activos no leidos publicaciones propios">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-highlight">
+                <span class="moodle-tweaks-row__title">Resaltar elementos</span>
+                <span class="moodle-tweaks-row__desc">Activos, no leídos y tus publicaciones</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-highlight" type="checkbox" data-key="highlight" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="highlight" title="Restablecer" aria-label="Restablecer Resaltar elementos">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="backToTop" data-search="boton volver arriba scroll">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-back-to-top">
+                <span class="moodle-tweaks-row__title">Botón volver arriba</span>
+                <span class="moodle-tweaks-row__desc">Acceso rápido al inicio de la página</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-back-to-top" type="checkbox" data-key="backToTop" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="backToTop" title="Restablecer" aria-label="Restablecer Botón volver arriba">↺</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="moodle-tweaks-group" aria-labelledby="group-pages">
+        <h2 id="group-pages">Páginas</h2>
+        <ul class="moodle-tweaks-list">
+          <li class="moodle-tweaks-item" data-item="activities" data-search="contenido cursos secciones actividades listados">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-activities">
+                <span class="moodle-tweaks-row__title">Contenido de cursos</span>
+                <span class="moodle-tweaks-row__desc">Secciones, actividades y listados</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-activities" type="checkbox" data-key="activities" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="activities" title="Restablecer" aria-label="Restablecer Contenido de cursos">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="forum" data-search="foros debates publicaciones">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-forum">
+                <span class="moodle-tweaks-row__title">Foros</span>
+                <span class="moodle-tweaks-row__desc">Debates y publicaciones más legibles</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-forum" type="checkbox" data-key="forum" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="forum" title="Restablecer" aria-label="Restablecer Foros">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="calendar" data-search="calendario eventos mes">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-calendar">
+                <span class="moodle-tweaks-row__title">Calendario</span>
+                <span class="moodle-tweaks-row__desc">Vista mensual clara y ordenada</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-calendar" type="checkbox" data-key="calendar" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="calendar" title="Restablecer" aria-label="Restablecer Calendario">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="cleanDashboard" data-search="limpiar panel portada dashboard banner indice colapsar">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-clean-dashboard">
+                <span class="moodle-tweaks-row__title">Panel limpio</span>
+                <span class="moodle-tweaks-row__desc">Sin banner gigante e índice colapsado</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-clean-dashboard" type="checkbox" data-key="cleanDashboard" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="cleanDashboard" title="Restablecer" aria-label="Restablecer Panel limpio">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="upcoming" data-search="proximas entregas tareas eventos barra">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-upcoming">
+                <span class="moodle-tweaks-row__title">Próximas entregas</span>
+                <span class="moodle-tweaks-row__desc">Barra con tareas y eventos próximos</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-upcoming" type="checkbox" data-key="upcoming" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="upcoming" title="Restablecer" aria-label="Restablecer Próximas entregas">↺</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="moodle-tweaks-group" aria-labelledby="group-advanced">
+        <h2 id="group-advanced">Avanzado</h2>
+        <ul class="moodle-tweaks-list">
+          <li class="moodle-tweaks-item" data-item="toolbarBadge" data-search="badge contador icono barra herramientas no leidos">
+            <div class="moodle-tweaks-row">
+              <label class="moodle-tweaks-row__text" for="toggle-toolbar-badge">
+                <span class="moodle-tweaks-row__title">Contador en el icono</span>
+                <span class="moodle-tweaks-row__desc">Avisos, mensajes y entregas sin leer</span>
+              </label>
+              <span class="moodle-tweaks-switch">
+                <input id="toggle-toolbar-badge" type="checkbox" data-key="toolbarBadge" />
+                <span class="moodle-tweaks-switch__slider" aria-hidden="true"></span>
+              </span>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="toolbarBadge" title="Restablecer" aria-label="Restablecer Contador en el icono">↺</button>
+            </div>
+          </li>
+          <li class="moodle-tweaks-item" data-item="customCss" data-search="css personalizado avanzado estilo">
+            <div class="moodle-tweaks-row moodle-tweaks-row--stack">
+              <label class="moodle-tweaks-row__text" for="textarea-custom-css">
+                <span class="moodle-tweaks-row__title">CSS personalizado</span>
+                <span class="moodle-tweaks-row__desc">Se inyecta en las páginas de EVA</span>
+              </label>
+              <textarea id="textarea-custom-css" class="moodle-tweaks-textarea" data-key="customCss" rows="4" spellcheck="false" placeholder=".selector { color: red; }"></textarea>
+              <button class="moodle-tweaks-item-reset" type="button" data-reset="customCss" title="Restablecer" aria-label="Restablecer CSS personalizado">↺</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <p class="moodle-tweaks-empty" id="search-empty" hidden>Sin resultados.</p>
+    </main>
+
+    <footer class="moodle-tweaks-footer">
+      <button id="reset" type="button" class="moodle-tweaks-reset">Restablecer todo</button>
+      <span id="status" class="moodle-tweaks-status" role="status" aria-live="polite"></span>
+    </footer>
+    <div class="moodle-tweaks-footer-links">
+      <button id="open-welcome" type="button" class="moodle-tweaks-link">Bienvenida</button>
+      <span class="moodle-tweaks-version">v<span id="version">1.1.0</span></span>
+    </div>
+
+    <script src="../shared/settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+/*!
+ * MoodleTweaks — dashboard.css
+ * Vista limpia de la pagina principal: oculta el banner gigante y
+ * compacta el listado de cursos.
+ * Se activa con html.moodle-tweaks-dashboard.
+ */
+
+/* ---- Banner gigante de la portada --------------------------------------- */
+html.moodle-tweaks-dashboard.path-site .sitetopic .eva_botonera {
+  display: none !important;
+}
+
+/* Por si el tema deja las imagenes fuera de .eva_botonera. */
+html.moodle-tweaks-dashboard.path-site .sitetopic img.img-fluid {
+  max-height: 110px;
+  width: auto;
+}
+
+/* ---- Mis cursos: tarjetas compactas ------------------------------------- */
+html.moodle-tweaks-dashboard #frontpage-course-list .coursebox .summary,
+html.moodle-tweaks-dashboard #frontpage-course-list .coursebox .teachers,
+html.moodle-tweaks-dashboard #frontpage-course-list .coursebox .enrolmenticons {
+  display: none !important;
+}
+
+html.moodle-tweaks-dashboard #frontpage-course-list .courses.frontpage-course-list-enrolled {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.6rem;
+}
+
+html.moodle-tweaks-dashboard #frontpage-course-list .coursebox {
+  padding: 0.7rem 0.85rem !important;
+}
