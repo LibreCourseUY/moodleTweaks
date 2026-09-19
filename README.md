@@ -1,5 +1,17 @@
 # MoodleTweaks
 
+> [!IMPORTANT]
+> LibrecourseUY es un proyecto de software open source, independiente y comunitario. Las herramientas, funcionalidades y recursos disponibles en esta plataforma incluyendo "MoodleTweaks" fueron creados y mantenidos por miembros, contribuidores y colaboradores de LibrecourseUY.
+>
+> La herramienta "MoodleTweaks" no está afiliada, asociada, patrocinada, avalada, autorizada ni respaldada por ninguna institución educativa u organización, incluyendo sin limitarse a la Universidad de la República (UdelaR) y la Facultad de Ingeniería (FING), ni por cátedras, docentes, unidades académicas o dependencias administrativas.
+>
+> Cualquier referencia a nombres, siglas, materias, planes de estudio, marcas o instituciones se utiliza únicamente con fines descriptivos e informativos, y no implica relación institucional, aprobación ni carácter oficial.
+>
+> El software y el contenido asociado se proporcionan "tal cual" (AS IS), sin garantías de ningún tipo. El uso del proyecto es bajo su propia responsabilidad.
+>
+> Al continuar, usted reconoce y acepta estos términos, y que cualquier interpretación de oficialidad es incorrecta.
+
+
 Extensión de navegador (Manifest V3 para Chrome y Firefox) que mejora la
 navegación y unifica el estilo visual de [EVA FING](https://eva.fing.edu.uy/),
 el entorno virtual de la Facultad de Ingeniería (Moodle 4.x con el tema
