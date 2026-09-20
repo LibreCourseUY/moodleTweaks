@@ -473,3 +473,184 @@ test("the master flag disables every feature when off", async () => {
   assert.ok(classes(env).contains("moodle-tweaks-theme"));
   await closeEnv(env);
 });
+
+const HOME_HTML = [
+  "<!DOCTYPE html><html><body>",
+  '<img id="banner" src="https://eva.fing.edu.uy/theme/img/banner.jpg" width="600" height="200">',
+  '<img id="course" src="https://eva.fing.edu.uy/course/img/cover.jpg" width="300" height="150">',
+  '<img id="icon" class="icon" src="https://eva.fing.edu.uy/pix/icon.png" width="32" height="32">',
+  '<img id="avatar" class="userpicture" src="https://eva.fing.edu.uy/pix/u/avatar.png">',
+  '<img id="tiny" src="https://eva.fing.edu.uy/pix/tiny.gif" width="16" height="16">',
+  "</body></html>",
+].join("");
+
+const ORIGINAL_BANNER = "https://eva.fing.edu.uy/theme/img/banner.jpg";
+
+function bannerDone(env) {
+  return env.document
+    .getElementById("banner")
+    .hasAttribute("data-moodle-tweaks-home");
+}
+
+async function waitForHomeImages(env, what) {
+  const start = Date.now();
+  while (!bannerDone(env)) {
+    if (Date.now() - start > 2000) {
+      throw new Error("tiempo de espera agotado: " + what);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+}
+
+function homeCacheKeys(env) {
+  return Object.keys(env.window.chrome._store).filter((key) =>
+    key.startsWith("moodleTweaksHomeImg")
+  );
+}
+
+test("themes eligible homepage images in two tones on /", async () => {
+  const chrome = makeChromeMock({ homeImages: true });
+  const env = loadContentScript({
+    chrome,
+    url: "https://eva.fing.edu.uy/",
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await waitForHomeImages(env, "banner entintada");
+
+  const banner = env.document.getElementById("banner");
+  const course = env.document.getElementById("course");
+  assert.ok(banner.src.indexOf("data:") === 0, "banner con src de datos");
+  assert.ok(course.src.indexOf("data:") === 0, "tarjeta de curso con src de datos");
+  assert.equal(
+    banner.getAttribute("data-moodle-tweaks-home-orig"),
+    ORIGINAL_BANNER
+  );
+
+  const icon = env.document.getElementById("icon");
+  const avatar = env.document.getElementById("avatar");
+  const tiny = env.document.getElementById("tiny");
+  assert.ok(!icon.hasAttribute("data-moodle-tweaks-home"), "icono sin tocar");
+  assert.ok(
+    !avatar.hasAttribute("data-moodle-tweaks-home"),
+    "avatar sin tocar"
+  );
+  assert.ok(!tiny.hasAttribute("data-moodle-tweaks-home"), "miniatura sin tocar");
+  assert.ok(homeCacheKeys(env).length >= 2, "cache por imagen escrito");
+
+  await closeEnv(env);
+});
+
+test("themes homepage images on /index.php too", async () => {
+  const env = loadContentScript({
+    chrome: makeChromeMock({ homeImages: true }),
+    url: "https://eva.fing.edu.uy/index.php",
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await waitForHomeImages(env, "banner entintada en index.php");
+
+  const banner = env.document.getElementById("banner");
+  assert.ok(banner.src.indexOf("data:") === 0, "banner con src de datos");
+  assert.equal(banner.src, "data:image/png;base64,AA==");
+  await closeEnv(env);
+});
+
+test("does not touch images outside the homepage", async () => {
+  const env = loadContentScript({
+    chrome: makeChromeMock({ homeImages: true }),
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await new Promise((resolve) => setTimeout(resolve, 30));
+
+  const banner = env.document.getElementById("banner");
+  assert.equal(banner.src, ORIGINAL_BANNER);
+  assert.ok(!banner.hasAttribute("data-moodle-tweaks-home"));
+  assert.equal(homeCacheKeys(env).length, 0);
+  await closeEnv(env);
+});
+
+test("restores the original srcs when homeImages is turned off", async () => {
+  const chrome = makeChromeMock({ homeImages: true });
+  const env = loadContentScript({
+    chrome,
+    url: "https://eva.fing.edu.uy/",
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await waitForHomeImages(env, "banner entintada antes de apagar");
+  assert.ok(
+    env.document.getElementById("banner").src.indexOf("data:") === 0
+  );
+
+  chrome.storage.sync.set({
+    [STORAGE_KEY]: { homeImages: false },
+  });
+  await settle(env);
+
+  const banner = env.document.getElementById("banner");
+  assert.equal(banner.src, ORIGINAL_BANNER);
+  assert.ok(!banner.hasAttribute("data-moodle-tweaks-home"));
+  assert.ok(!banner.hasAttribute("data-moodle-tweaks-home-orig"));
+  await closeEnv(env);
+});
+
+test("re-themes when the palette changes via dark mode", async () => {
+  const chrome = makeChromeMock({ homeImages: true });
+  const env = loadContentScript({
+    chrome,
+    url: "https://eva.fing.edu.uy/",
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await waitForHomeImages(env, "banner entintada en claro");
+  const lightKeys = homeCacheKeys(env).length;
+  assert.ok(lightKeys >= 2);
+
+  // jsdom no calcula las custom properties de las hojas de estilo: emulamos
+  // el cambio de paleta que en un navegador real produce la clase oscura.
+  const html = env.document.documentElement;
+  html.style.setProperty("--moodle-tweaks-text", "#11161c");
+  html.style.setProperty("--moodle-tweaks-surface", "#e2e8f0");
+  chrome.storage.sync.set({
+    [STORAGE_KEY]: { homeImages: true, dark: true },
+  });
+  await settle(env);
+
+  const start = Date.now();
+  while (homeCacheKeys(env).length <= lightKeys) {
+    if (Date.now() - start > 2000) {
+      throw new Error("la paleta oscura no re-entinto las imagenes");
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+
+  const banner = env.document.getElementById("banner");
+  assert.ok(banner.hasAttribute("data-moodle-tweaks-home"));
+  assert.ok(banner.src.indexOf("data:") === 0, "re-entintada con paleta oscura");
+  await closeEnv(env);
+});
+
+test("the master flag disables homepage theming even when enabled", async () => {
+  const chrome = makeChromeMock({ enabled: false, homeImages: true });
+  const env = loadContentScript({
+    chrome,
+    url: "https://eva.fing.edu.uy/",
+    html: HOME_HTML,
+    media: true,
+  });
+  await settle(env);
+  await new Promise((resolve) => setTimeout(resolve, 30));
+
+  const banner = env.document.getElementById("banner");
+  assert.equal(banner.src, ORIGINAL_BANNER);
+  assert.ok(!banner.hasAttribute("data-moodle-tweaks-home"));
+  assert.equal(homeCacheKeys(env).length, 0);
+  await closeEnv(env);
+});

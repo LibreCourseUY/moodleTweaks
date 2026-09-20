@@ -22,6 +22,7 @@
     density: "comfortable", // "comfortable" | "compact"
     fontScale: 100, // Escala tipografica global (85-130 %)
     cleanDashboard: false, // Banner compacto e indice colapsado
+    homeImages: false, // Entintar las imagenes de la portada (dos tonos)
     upcoming: false, // Barra de proximas entregas
     toolbarBadge: false, // Contador en el icono de la barra
     customCss: "", // CSS personalizado del usuario
@@ -50,6 +51,7 @@
     { key: "forum", group: "pages", type: "boolean" },
     { key: "calendar", group: "pages", type: "boolean" },
     { key: "cleanDashboard", group: "pages", type: "boolean" },
+    { key: "homeImages", group: "pages", type: "boolean" },
     { key: "upcoming", group: "pages", type: "boolean" },
     { key: "toolbarBadge", group: "advanced", type: "boolean" },
     { key: "customCss", group: "advanced", type: "string" },

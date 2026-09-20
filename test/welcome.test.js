@@ -6,7 +6,7 @@ const { readSrc, loadWelcome } = require("./helpers");
 
 test("welcome page shows the extension version", async () => {
   const { document, dom } = await loadWelcome();
-  assert.equal(document.getElementById("version").textContent, "1.1.0");
+  assert.equal(document.getElementById("version").textContent, "1.2.0");
   dom.window.close();
 });
 

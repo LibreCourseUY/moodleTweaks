@@ -31,6 +31,7 @@ test("settings expose storage key and defaults", () => {
     density: "comfortable",
     fontScale: 100,
     cleanDashboard: false,
+    homeImages: false,
     upcoming: false,
     toolbarBadge: false,
     customCss: "",

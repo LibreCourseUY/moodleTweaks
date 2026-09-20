@@ -92,6 +92,26 @@ Oculta el banner gigante, compacta los bloques de cursos y **colapsa el índice
 del curso** haciendo clic en el propio toggle de Moodle (así la preferencia se
 persiste en el servidor). Solo actúa cuando el cajón arranca abierto.
 
+## Imágenes de portada (`homeImages`)
+
+`src/content/theme-images.js` + JS en `moodle-tweaks.js`
+
+Solo en la página principal (`/` o `/index.php`), convierte las imágenes del
+banner y de las tarjetas de cursos a **dos tonos**: las sombras toman el color
+de texto y las luces el color de superficie de los tokens de MoodleTweaks, por
+lo que sigue el modo oscuro y sus variantes automáticamente.
+
+- `theme-images.js` es el motor de entintado: dibuja la
+  imagen en un canvas (con `quality` 2.7, configurable en
+  `moodleTweaksHomeQuality`), separa cada píxel según su brillo contra el
+  umbral `point` (200) y cachea el resultado en `chrome.storage.local`. La
+  clave de caché incluye los colores usados, así que al cambiar la paleta se
+  re-entinta sin reutilizar datos viejos.
+- `moodle-tweaks.js` selecciona las imágenes candidatas (descarta iconos del
+  tema, avatares, logos, data URLs y miniaturas < 64 px), guarda el `src`
+  original en un `data-` attribute y lo restaura al apagar la feature o al
+  cambiar de paleta (p. ej. al prender el modo oscuro).
+
 ## Botón volver arriba (`backToTop`)
 
 100% JS (`moodle-tweaks.js`) · `src/content/css/back-to-top.css`

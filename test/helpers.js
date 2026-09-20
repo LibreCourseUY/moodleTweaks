@@ -37,13 +37,20 @@ async function closeEnv(env) {
 function makeStorageArea(store, listeners) {
   return {
     get(key, callback) {
-      setTimeout(() => {
+      const deliver = function () {
         const result = {};
         if (Object.prototype.hasOwnProperty.call(store, key)) {
           result[key] = store[key];
         }
-        callback(result);
-      }, 0);
+        return result;
+      };
+      if (typeof callback === "function") {
+        setTimeout(() => callback(deliver()), 0);
+        return;
+      }
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(deliver()), 0);
+      });
     },
     set(payload) {
       const entries = Object.entries(payload);
@@ -86,7 +93,7 @@ function makeChromeMock(initialSettings = {}, options = {}) {
         return Promise.resolve();
       },
       getManifest() {
-        return { version: "1.1.0" };
+        return { version: "1.2.0" };
       },
       getURL(path) {
         return "chrome-extension://moodletweaks/" + path;
@@ -149,6 +156,54 @@ function installRafPolyfill(window) {
   };
 }
 
+/* jsdom no renderiza canvas ni carga imagenes reales. Para probar el motor
+ * de entintado simulamos un Image cuyo src dispara onload y un contexto 2D que
+ * devuelve un bitmap vacio pero funcional. */
+function installFakeImage(window) {
+  window.Image = class FakeImage {
+    constructor() {
+      this.crossOrigin = "";
+      this.onload = null;
+      this.onerror = null;
+      this.naturalWidth = 0;
+      this.naturalHeight = 0;
+      this._src = "";
+    }
+
+    set src(value) {
+      this._src = value;
+      setTimeout(() => {
+        if (typeof this.onload === "function") this.onload();
+      }, 0);
+    }
+
+    get src() {
+      return this._src;
+    }
+  };
+}
+
+function installFakeCanvas(window) {
+  window.HTMLCanvasElement.prototype.getContext = function () {
+    return {
+      imageSmoothingEnabled: true,
+      drawImage() {},
+      getImageData(x, y, width, height) {
+        return {
+          data: new Uint8ClampedArray(width * height * 4),
+          width,
+          height,
+        };
+      },
+      putImageData() {},
+    };
+  };
+  // jsdom devuelve null sin el paquete "canvas"; usamos un data URL estable.
+  window.HTMLCanvasElement.prototype.toDataURL = function () {
+    return "data:image/png;base64,AA==";
+  };
+}
+
 function createWindow(options = {}) {
   const {
     url = "https://eva.fing.edu.uy/course/view.php?id=123",
@@ -157,6 +212,7 @@ function createWindow(options = {}) {
     cache = null,
     matchMedia = null,
     fetch = null,
+    media = false,
   } = options;
 
   const dom = new JSDOM(html, {
@@ -167,6 +223,10 @@ function createWindow(options = {}) {
   const { document } = window;
 
   installRafPolyfill(window);
+  if (media) {
+    installFakeImage(window);
+    installFakeCanvas(window);
+  }
 
   if (chrome) {
     try {
@@ -204,6 +264,7 @@ function evalSrc(window, file) {
 function loadContentScript(options = {}) {
   const env = createWindow(options);
   evalSrc(env.window, "shared/settings.js");
+  evalSrc(env.window, "content/theme-images.js");
   evalSrc(env.window, "content/moodle-tweaks.js");
   return env;
 }

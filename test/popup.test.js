@@ -228,7 +228,7 @@ test("shows whether the extension is active on the current site", async () => {
 test("shows the extension version", async () => {
   const { dom, document } = await loadPopup({ chrome: makeChromeMock() });
   await flush();
-  assert.equal(document.getElementById("version").textContent, "1.1.0");
+  assert.equal(document.getElementById("version").textContent, "1.2.0");
   dom.window.close();
 });
 
@@ -261,6 +261,29 @@ test("the custom CSS box persists on input", async () => {
   assert.equal(
     chrome._store.moodleTweaksSettings.customCss,
     ".moodle-tweaks-test { color: red; }"
+  );
+
+  dom.window.close();
+});
+
+test("the homeImages toggle is rendered and persists to storage", async () => {
+  const chrome = makeChromeMock();
+  const { dom, document } = await loadPopup({ chrome });
+  await flush();
+
+  const toggle = input(document, "homeImages");
+  assert.ok(toggle, "expected an Imagenes de portada toggle");
+  assert.equal(toggle.checked, false);
+
+  toggle.checked = true;
+  toggle.dispatchEvent(new dom.window.Event("change"));
+  await flush();
+
+  assert.equal(chrome._store.moodleTweaksSettings.homeImages, true);
+  assert.equal(
+    document.getElementById("status").textContent,
+    "Guardado",
+    "status flashes Saved"
   );
 
   dom.window.close();

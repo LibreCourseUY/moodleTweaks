@@ -22,6 +22,7 @@
     density: "comfortable",
     fontScale: 100,
     cleanDashboard: false,
+    homeImages: false,
     upcoming: false,
     toolbarBadge: false,
     customCss: "",
@@ -67,6 +68,7 @@
   let domReady = false;
   let upcomingRequested = false;
   let dashboardApplied = false;
+  let homePalette = "";
 
   /* ---------------------------------------------------------------- utils */
 
@@ -151,6 +153,7 @@
       highlight: false,
       backToTop: false,
       cleanDashboard: false,
+      homeImages: false,
       upcoming: false,
       toolbarBadge: false,
       customCss: "",
@@ -594,6 +597,100 @@
     sendBadge(total > 0 ? (total > 99 ? "99+" : String(total)) : "");
   }
 
+  /* ------------------------------------------ entintar la portada (homeImages) */
+
+  // Convierte las imagenes de la pagina principal (banner y tarjetas de
+  // cursos) a dos tonos alineados con la paleta del sitio, usando el motor de
+  // theme-images.js que se carga antes que este script.
+  const HOME_IMG_MIN_SIZE = 64;
+  const HOME_DONE_ATTR = "data-moodle-tweaks-home";
+  const HOME_ORIG_ATTR = "data-moodle-tweaks-home-orig";
+
+  function isHomepage() {
+    return typeof shared.isHomepage === "function" && shared.isHomepage();
+  }
+
+  // Las imagenes ya entintadas (o que nunca deberian entintarse: iconos del
+  // tema, avatares, logos, data URLs y miniaturas decorativas) se descartan.
+  function themeableImage(img) {
+    if (!img || typeof img.hasAttribute !== "function") return false;
+    if (img.hasAttribute(HOME_DONE_ATTR)) return false;
+    if (img.src && img.src.indexOf("data:") === 0) return false;
+    if (img.classList.contains("icon")) return false;
+    if (img.classList.contains("userpicture")) return false;
+    if (img.closest && img.closest(".logo")) return false;
+    const w = img.naturalWidth || img.width || 0;
+    const h = img.naturalHeight || img.height || 0;
+    if (w && h && w < HOME_IMG_MIN_SIZE && h < HOME_IMG_MIN_SIZE) return false;
+    return true;
+  }
+
+  function themeHomeImages() {
+    if (!isHomepage() || typeof shared.processImages !== "function") return;
+    const images = Array.prototype.filter.call(
+      document.querySelectorAll("img"),
+      themeableImage
+    );
+    if (!images.length) return;
+    // Guardamos el src original antes de entintar para poder revertir al
+    // apagar la funcionalidad.
+    images.forEach(function (img) {
+      if (!img.hasAttribute(HOME_ORIG_ATTR)) {
+        img.setAttribute(HOME_ORIG_ATTR, img.src);
+      }
+    });
+    Promise.resolve(
+      shared.processImages(
+        images,
+        shared.IMAGE_PREFIX || "moodleTweaksHomeImg",
+        { point: 200 }
+      )
+    ).then(function () {
+      images.forEach(function (img) {
+        img.setAttribute(HOME_DONE_ATTR, "1");
+      });
+    });
+  }
+
+  function restoreHomeImages() {
+    document
+      .querySelectorAll("[" + HOME_DONE_ATTR + "]")
+      .forEach(function (img) {
+        const orig = img.getAttribute(HOME_ORIG_ATTR);
+        if (orig) img.src = orig;
+        img.removeAttribute(HOME_ORIG_ATTR);
+        img.removeAttribute(HOME_DONE_ATTR);
+      });
+  }
+
+  // La paleta efectiva (tema + modo oscuro) determina si hay que volver a
+  // entintar: las claves de caché incluyen los colores, pero las imagenes ya
+  // pintadas se saltan, asi que ante un cambio de paleta se revierten y se
+  // vuelven a procesar.
+  function paletteSignature() {
+    const next = activeSettings();
+    const dark = resolveDark(next);
+    return (
+      (next.enabled && next.theme ? "theme" : "naked") +
+      (dark ? ":" + (next.darkVariant || "default") : ":light")
+    );
+  }
+
+  function applyHomeImages() {
+    if (!isHomepage()) return;
+    if (!featureOn("homeImages")) {
+      restoreHomeImages();
+      homePalette = "";
+      return;
+    }
+    const signature = paletteSignature();
+    if (signature !== homePalette) {
+      restoreHomeImages();
+      homePalette = signature;
+    }
+    themeHomeImages();
+  }
+
   /* ------------------------------------------------------------ observador */
 
   // En paginas grandes casi todas las mutaciones no tocan el foro; si ninguna
@@ -644,6 +741,7 @@
     markOwnPosts();
     startObserver();
     syncDashboard(featureOn("cleanDashboard"));
+    applyHomeImages();
     syncUpcoming(featureOn("upcoming"));
     updateBadge();
   }
@@ -653,6 +751,7 @@
     applyAppearance(activeSettings());
     writeCache(settings);
     syncBackToTop(featureOn("backToTop"));
+    applyHomeImages();
     if (featureOn("highlight")) {
       markOwnPosts();
     } else {
@@ -692,6 +791,7 @@
       const onSchemeChange = function () {
         if (settings.enabled && settings.darkAuto) {
           applyAppearance(activeSettings());
+          applyHomeImages();
         }
       };
       if (mq.addEventListener) mq.addEventListener("change", onSchemeChange);
