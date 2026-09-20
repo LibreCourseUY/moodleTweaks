@@ -597,7 +597,7 @@
     sendBadge(total > 0 ? (total > 99 ? "99+" : String(total)) : "");
   }
 
-  /* ------------------------------------------ entintar la portada (homeImages) */
+  /* Cambiar el color de la portada (homeImages) */
 
   // Convierte las imagenes de la pagina principal (banner y tarjetas de
   // cursos) a dos tonos alineados con la paleta del sitio, usando el motor de
@@ -610,7 +610,7 @@
     return typeof shared.isHomepage === "function" && shared.isHomepage();
   }
 
-  // Las imagenes ya entintadas (o que nunca deberian entintarse: iconos del
+  // Las imagenes ya cambiadas de color (o que nunca deberian cambiarse: iconos del
   // tema, avatares, logos, data URLs y miniaturas decorativas) se descartan.
   function themeableImage(img) {
     if (!img || typeof img.hasAttribute !== "function") return false;
@@ -632,7 +632,7 @@
       themeableImage
     );
     if (!images.length) return;
-    // Guardamos el src original antes de entintar para poder revertir al
+    // Guardamos el src original antes de cambiar el color para poder revertir al
     // apagar la funcionalidad.
     images.forEach(function (img) {
       if (!img.hasAttribute(HOME_ORIG_ATTR)) {
@@ -664,7 +664,7 @@
   }
 
   // La paleta efectiva (tema + modo oscuro) determina si hay que volver a
-  // entintar: las claves de caché incluyen los colores, pero las imagenes ya
+  // cambiar de color: las claves de caché incluyen los colores, pero las imagenes ya
   // pintadas se saltan, asi que ante un cambio de paleta se revierten y se
   // vuelven a procesar.
   function paletteSignature() {
@@ -691,7 +691,7 @@
     themeHomeImages();
   }
 
-  /* ------------------------------------------------------------ observador */
+  /* observador */
 
   // En paginas grandes casi todas las mutaciones no tocan el foro; si ninguna
   // de la trama introdujo un .forumpost no programamos trabajo, y el rAF

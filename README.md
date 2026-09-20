@@ -44,7 +44,7 @@ script o en el service worker.
 | Foros | `forum` | `html.moodle-tweaks-forum` | Debates y publicaciones más legibles. |
 | Calendario | `calendar` | `html.moodle-tweaks-calendar` | Vista mensual clara y ordenada. |
 | Panel limpio | `cleanDashboard` | `html.moodle-tweaks-dashboard` + JS | Oculta el banner gigante y colapsa el índice del curso. |
-| Imágenes de portada | `homeImages` | JS (`theme-images.js`) | Entinta el banner y los cursos de la página principal en dos tonos. |
+| Imágenes de portada | `homeImages` | JS (`theme-images.js`) | Cambia de color el banner y los cursos de la página principal en dos tonos. |
 | Próximas entregas | `upcoming` | JS + `html.moodle-tweaks-upcoming` | Barra con tareas y eventos próximos (web service del calendario). |
 | Contador en el ícono | `toolbarBadge` | JS + service worker | Badge con avisos, mensajes y entregas próximas. |
 | CSS personalizado | `customCss` | `<style>` inyectado | Override para usuarios avanzados. |
@@ -103,7 +103,7 @@ src/
   background/
     service-worker.js      Badge del ícono y apertura de la bienvenida.
   content/
-    theme-images.js          Motor de entintado (dos tonos) de la portada.
+    theme-images.js          Motor de cambio de color (dos tonos) de la portada.
     moodle-tweaks.js          Content script: clases, barra, badge y observador.
     css/
       base.css             Tokens de diseño, escala de fuente y accesibilidad.
