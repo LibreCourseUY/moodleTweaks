@@ -1,6 +1,6 @@
 /*!
  * MoodleTweaks — dark.css
- * Modo oscuro para EVA FING (Moodle Boost).
+ * Modo oscuro para EVA (Moodle Boost).
  * Sobreescribe la paleta de base.css y rescata componentes que
  * Moodle deja en blanco. Se activa con html.moodle-tweaks-dark.
  * Debe cargarse al final de la lista de CSS para ganar los empates
@@ -313,7 +313,7 @@ html.moodle-tweaks-dark .page-item.active .page-link {
 }
 
 /* ---- Estados de foco y activos --------------------------------------------
- * Al recibir foco o quedar activos, Bootstrap/FING pintan varios controles en
+ * Al recibir foco o quedar activos, Bootstrap y el tema pintan varios controles en
  * blanco (enlaces sin clase, inputs, botones de icono, indice del curso...).
  * Sobre el fondo oscuro eso genera un flash claro con texto ilegible; los
  * llevamos a las superficies oscuras (manteniendo el acento de marca). */

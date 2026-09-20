@@ -1,6 +1,6 @@
 /*!
  * MoodleTweaks — base.css
- * Tema consistente para EVA FING (Moodle Boost).
+ * Tema consistente para EVA (Moodle Boost).
  * Define una paleta unica, tipografia, superficies y componentes
  * coherentes en todas las paginas. Se activa con html.moodle-tweaks-theme.
  */
@@ -43,7 +43,7 @@ html.moodle-tweaks-theme {
   --moodle-tweaks-font: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
     "Helvetica Neue", arial, "Noto Sans", "Liberation Sans", sans-serif;
 
-  /* Alinea los tokens de Bootstrap con la marca FING */
+  /* Alinea los tokens de Bootstrap con la marca del tema */
   --primary: var(--moodle-tweaks-brand);
   --blue: var(--moodle-tweaks-brand);
 

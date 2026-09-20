@@ -13,8 +13,8 @@
 
 
 Extensión de navegador (Manifest V3 para Chrome y Firefox) que mejora la
-navegación y unifica el estilo visual de [EVA FING](https://eva.fing.edu.uy/),
-el entorno virtual de la Facultad de Ingeniería (Moodle 4.x con el tema
+navegación y unifica el estilo visual de [EVA](https://eva.fing.edu.uy/),
+el entorno virtual de ingeniería (Moodle 4.x con el tema
 `fing`).
 
 Aplica una estética consistente, agrega modo oscuro (manual, automático y con
@@ -58,7 +58,7 @@ La extensión no está publicada en las tiendas; se instala en modo desarrollo.
 2. Activá el **Modo de desarrollador** (arriba a la derecha).
 3. Elegí **Cargar descomprimida** y seleccioná la raíz de este repositorio
    (donde está `manifest.json`).
-4. Fijá MoodleTweaks a la barra de herramientas y abrilo en EVA FING.
+4. Fijá MoodleTweaks a la barra de herramientas y abrilo en EVA.
 
 ### Firefox
 
@@ -87,7 +87,7 @@ de las funciones y la versión. El enlace **Bienvenida** del pie vuelve a
 abrirla.
 
 Los cambios se guardan en `chrome.storage` (sincronizado si está disponible) y
-se aplican al instante en las pestañas abiertas de EVA FING.
+se aplican al instante en las pestañas abiertas de EVA.
 
 ## Estructura del proyecto
 
@@ -209,7 +209,7 @@ usan selectores `html.moodle-tweaks-dark ...` más específicos y `!important` p
 | Permiso | Motivo |
 | --- | --- |
 | `storage` | Guardar y sincronizar las preferencias. |
-| `https://eva.fing.edu.uy/*` | Inyectar CSS/JS únicamente en EVA FING. |
+| `https://eva.fing.edu.uy/*` | Inyectar CSS/JS únicamente en EVA. |
 
 La extensión no recolecta datos ni se comunica con servidores externos.
 

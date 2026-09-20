@@ -2,7 +2,7 @@
   "name": "moodletweaks",
   "version": "1.1.0",
   "private": true,
-  "description": "Manifest V3 browser extension for EVA FING",
+  "description": "Manifest V3 browser extension for EVA",
   "scripts": {
     "pretest": "node scripts/check-tests.mjs",
     "test": "node --test test/*.test.js",
