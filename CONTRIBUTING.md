@@ -93,7 +93,7 @@ npm run lint:firefox
 ## Gotchas que ya nos mordieron
 
 - En dark mode, un override cuyo selector empata en especificidad con el tema
-  `fing` **pierde** (el CSS del tema llega después). Comprobá siempre la
+  default **pierde** (el CSS del tema llega después). Comprobá siempre la
   complejidad del selector del tema antes de escribir el override.
 - Gradientes/backgrounds inline en el modo oscuro: hay que neutralizar también
   `background-image`, no solo `background-color`.

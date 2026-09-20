@@ -1,8 +1,8 @@
-# Modo oscuro: gotchas del tema `fing`
+# Modo oscuro: gotchas del tema default
 
 El modo oscuro vive en `src/content/css/dark.css`. El CSS de la extensión se
 inyecta en `document_start`, **antes** de la hoja del tema
-(`/theme/styles.php/fing/...`), así que ante selectores de igual especificidad
+(`/theme/styles.php/...`), así que ante selectores de igual especificidad
 **gana el tema**. Eso, sumado al markup autogenerado por los editores de Moodle
 (inline styles incluidos), produce un puñado de trampas que ya nos mordieron y
 quedan documentadas acá.
@@ -101,7 +101,7 @@ pertenece a `moodle-tweaks-dark` y es compartido.
 
 ## Checklist antes de mergear un cambio de dark mode
 
-1. Probar el Tema "fing" real (no solo una página local) y validar que el
+1. Probar el Tema default (no solo una página local) y validar que el
    override gane el empate de especificidad.
 2. Cajas con inline styles: ¿hay gradiente/imagen atrás?
 3. ¿Algún contenedor anidado podría estar re-iluminando con un blanco

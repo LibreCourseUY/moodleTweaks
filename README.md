@@ -14,8 +14,7 @@
 
 Extensión de navegador (Manifest V3 para Chrome y Firefox) que mejora la
 navegación y unifica el estilo visual de [EVA](https://eva.fing.edu.uy/),
-el entorno virtual de ingeniería (Moodle 4.x con el tema
-`fing`).
+el entorno virtual de ingeniería (Moodle 4.x).
 
 Aplica una estética consistente, agrega modo oscuro (manual, automático y con
 variantes AMOLED/dim), escala tipográfica y densidad ajustables, y pule
@@ -202,7 +201,7 @@ script envía al service worker el contador de avisos/mensajes/entregas, que lo
 pinta como badge sobre el ícono, y la página de bienvenida usa el mismo
 `shared/settings.js` para mostrar la versión.
 
-En `dark.css` los overrides se comparan contra la especificidad del tema `fing`
+En `dark.css` los overrides se comparan contra la especificidad del tema default
 (que se carga después que este content script); para no perder los empates se
 usan selectores `html.moodle-tweaks-dark ...` más específicos y `!important` puntuales.
 

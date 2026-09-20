@@ -30,7 +30,7 @@ Depende de nada. Todos los demás módulos consumen sus tokens.
   (negro puro). Se traduce a las clases `moodle-tweaks-dark-dim`/
   `moodle-tweaks-dark-amoled` sobre `moodle-tweaks-dark`.
 
-Es el módulo con más trampas del tema `fing`. Todas documentadas en
+Es el módulo con más trampas del tema default. Todas documentadas en
 [`docs/dark-mode.md`](docs/dark-mode.md).
 
 ## Escala de fuente (`fontScale`) y densidad (`density`)
