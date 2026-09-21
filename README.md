@@ -168,7 +168,7 @@ manifest por navegador en `scripts/manifest-targets.mjs`.
 ## Empaquetado / release
 
 El desarrollo no requiere build, pero para publicar se genera un paquete por
-navegador. El único lugar donde difieren es el `manifest.json` — el código en
+navegador. El único lugar donde difieren es el `manifest.json`; el código en
 `src/` es idéntico:
 
 - **Chrome / Edge / Brave**: `background.service_worker`, sin `background.scripts`
