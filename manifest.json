@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "MoodleTweaks",
-  "version": "1.2.0",
-  "description": "Mejora la navegación y unifica el estilo visual de EVA (eva.fing.edu.uy).",
+  "version": "1.2.1",
+  "description": "Mejora la navegación y unifica el estilo visual de paginas basadas en Moodle.",
   "icons": {
     "16": "src/icons/icon16.png",
     "32": "src/icons/icon32.png",
