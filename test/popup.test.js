@@ -198,31 +198,31 @@ test("darkAuto disables the manual dark toggle", async () => {
 });
 
 test("shows whether the extension is active on the current site", async () => {
-  const onEva = await loadPopup({ chrome: makeChromeMock() });
+  const onMoodleTweaks = await loadPopup({ chrome: makeChromeMock() });
   await flush();
   assert.equal(
-    onEva.document.getElementById("site-status").classList.contains("is-active"),
+    onMoodleTweaks.document.getElementById("site-status").classList.contains("is-active"),
     true
   );
   assert.equal(
-    onEva.document.getElementById("site-status-text").textContent,
+    onMoodleTweaks.document.getElementById("site-status-text").textContent,
     "Activo en este sitio"
   );
-  onEva.dom.window.close();
+  onMoodleTweaks.dom.window.close();
 
-  const offEva = await loadPopup({
+  const offMoodleTweaks = await loadPopup({
     chrome: makeChromeMock({}, { tabUrl: "https://example.com/" }),
   });
   await flush();
   assert.equal(
-    offEva.document.getElementById("site-status").classList.contains("is-active"),
+    offMoodleTweaks.document.getElementById("site-status").classList.contains("is-active"),
     false
   );
   assert.equal(
-    offEva.document.getElementById("site-status-text").textContent,
-    "No estás en EVA"
+    offMoodleTweaks.document.getElementById("site-status-text").textContent,
+    "No estas en la plataforma"
   );
-  offEva.dom.window.close();
+  offMoodleTweaks.dom.window.close();
 });
 
 test("shows the extension version", async () => {

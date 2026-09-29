@@ -31,8 +31,8 @@ body:
     id: page
     attributes:
       label: Página / curso afectado
-      description: URL o sección de EVA donde se reproduce.
-      placeholder: "p. ej. https://eva.fing.edu.uy/course/view.php?id=420 (Tema X)"
+      description: URL o sección de la plataforma donde se reproduce.
+      placeholder: "p. ej. la pagina principal (Tema X)"
     validations:
       required: true
   - type: checkboxes

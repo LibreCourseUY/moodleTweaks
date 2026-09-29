@@ -432,7 +432,7 @@ test("sends unread counts to the toolbar badge when enabled", async () => {
   await settle(env);
 
   const badge = chrome._messages
-    .filter((message) => message.type === "eva:badge")
+    .filter((message) => message.type === "moodletweaks:badge")
     .pop();
   assert.ok(badge, "expected a badge message");
   assert.equal(badge.text, "7", "2 notifications + 5 messages, not 55");
@@ -445,7 +445,7 @@ test("clears the toolbar badge when disabled", async () => {
   await settle(env);
 
   const badge = chrome._messages
-    .filter((message) => message.type === "eva:badge")
+    .filter((message) => message.type === "moodletweaks:badge")
     .pop();
   assert.ok(badge);
   assert.equal(badge.text, "");

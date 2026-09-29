@@ -96,7 +96,7 @@
     return { r: 0, g: 0, b: 0, a: 0 };
   }
 
-  // La portada de EVA vive en "/" o "/index.php". En cualquier otra pagina el
+  // La portada de plataforma vive en "/" o "/index.php". En cualquier otra pagina el
   // contenido (fotos de actividades, avatares, etc.).
   function isHomepage() {
     const path = globalThis.location && globalThis.location.pathname;

@@ -576,7 +576,7 @@
     try {
       // En Chrome devuelve una promesa; si el service worker no responde,
       // atajamos el rechazo para no ensuciar la consola.
-      const result = api.runtime.sendMessage({ type: "eva:badge", text: text });
+      const result = api.runtime.sendMessage({ type: "moodletweaks:badge", text: text });
       if (result && typeof result.catch === "function") {
         result.catch(function () {});
       }

@@ -213,7 +213,7 @@
       if (siteStatusText) {
         siteStatusText.textContent = active
           ? "Activo en este sitio"
-          : "No estás en EVA";
+          : "No estas en la plataforma";
       }
     });
   }

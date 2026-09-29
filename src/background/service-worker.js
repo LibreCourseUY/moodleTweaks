@@ -52,7 +52,7 @@
   });
 
   api.runtime.onMessage.addListener(function (message) {
-    if (!message || message.type !== "eva:badge") return;
+    if (!message || message.type !== "moodletweaks:badge") return;
     setBadge(message.text);
   });
 })();

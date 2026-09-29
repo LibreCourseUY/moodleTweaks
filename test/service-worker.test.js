@@ -55,8 +55,8 @@ test("does not open the welcome page on update", () => {
 
 test("sets and clears the action badge from content-script messages", () => {
   const calls = loadWorker();
-  calls.message({ type: "eva:badge", text: "3" });
-  calls.message({ type: "eva:badge", text: "" });
+  calls.message({ type: "moodletweaks:badge", text: "3" });
+  calls.message({ type: "moodletweaks:badge", text: "" });
   calls.message({ type: "otra-cosa", text: "9" });
   assert.deepEqual(calls.badge, ["3", ""]);
 });

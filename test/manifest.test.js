@@ -34,7 +34,7 @@ test("popup entry point exists", () => {
   assert.equal(exists(manifest.action.default_popup), true);
 });
 
-test("content scripts run at document_start on the EVA domain", () => {
+test("content scripts run at document_start on the domain", () => {
   const scripts = manifest.content_scripts;
   assert.ok(Array.isArray(scripts) && scripts.length === 1);
   assert.equal(scripts[0].run_at, "document_start");
