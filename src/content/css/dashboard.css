@@ -6,11 +6,12 @@
  */
 
 /* ---- Banner gigante de la portada --------------------------------------- */
-html.moodle-tweaks-dashboard.path-site .sitetopic .eva_botonera {
+html.moodle-tweaks-dashboard.path-site .sitetopic > :first-child > :first-child > :first-child > :nth-child(2) > :first-child > :first-child > :first-child > :nth-child(3),
+html.moodle-tweaks-dashboard.path-site .sitetopic > :first-child > :first-child > :first-child > :nth-child(2) > :first-child > :first-child > :first-child > :nth-child(5)
+{
   display: none !important;
 }
 
-/* Por si el tema deja las imagenes fuera de .eva_botonera. */
 html.moodle-tweaks-dashboard.path-site .sitetopic img.img-fluid {
   max-height: 110px;
   width: auto;
